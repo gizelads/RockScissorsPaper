@@ -1,15 +1,15 @@
 function iniciarJuego() {
-    let botonMascota = document.getElementById('boton-mascota')
-    botonMascota.addEventListener('click', seleccionarMascotaJugador)
+    let botonMascota = document.getElementById("boton-mascota")
+    botonMascota.addEventListener("click", seleccionarMascotaJugador)
 }
 
 function seleccionarMascotaJugador() {
-    let hipodogeInput = document.getElementById('hipodoge')
-    let capipepoInput = document.getElementById('capipepo')
-    let ratigueyaInput = document.getElementById('ratigueya')
-    let langostelvisInput = document.getElementById('langostelvis')
-    let tucapalmaInput = document.getElementById('tucapalma')
-    let pydosInput = document.getElementById('pydos')
+    let hipodogeInput = document.getElementById("hipodoge")
+    let capipepoInput = document.getElementById("capipepo")
+    let ratigueyaInput = document.getElementById("ratigueya")
+    let langostelvisInput = document.getElementById("langostelvis")
+    let tucapalmaInput = document.getElementById("tucapalma")
+    let pydosInput = document.getElementById("pydos")
 
     if(hipodogeInput.checked) {
         alert("Seleccionaste a Hipodoge💧")
@@ -28,4 +28,4 @@ function seleccionarMascotaJugador() {
     }
 }
 
-window.addEventListener('load', iniciarJuego)
+window.addEventListener("load", iniciarJuego)
