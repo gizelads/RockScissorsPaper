@@ -12,17 +12,17 @@ function seleccionarMascotaJugador() {
     let pydosInput = document.getElementById('pydos')
 
     if(hipodogeInput.checked) {
-        alert("Has seleccionado Hipodoge💧")
+        alert("Seleccionaste a Hipodoge💧")
     } else if(capipepoInput.checked) {
-        alert("Has seleccionado Capipepo🌱")
+        alert("Seleccionaste a Capipepo🌱")
     } else if(ratigueyaInput.checked) {
-        alert("Has seleccionado Ratigueya🔥")
+        alert("Seleccionaste a Ratigueya🔥")
     } else if(langostelvisInput.checked) {
-        alert("Has seleccionado Langostelvis💧🔥")
+        alert("Seleccionaste a Langostelvis💧🔥")
     } else if(tucapalmaInput.checked) {
-        alert("Has seleccionado Tucapalma💧🌱")
+        alert("Seleccionaste a Tucapalma💧🌱")
     } else if(pydosInput.checked) {
-        alert("Has seleccionado Pydos🔥🌱")
+        alert("Seleccionaste a Pydos🔥🌱")
     } else {
         alert("Debes seleccionar una mascota")
     }
