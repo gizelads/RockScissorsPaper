@@ -1,7 +1,7 @@
-function iniciarJuego() {
+window.addEventListener("load", () => {   //iniciar juego
     let botonMascota = document.getElementById("boton-mascota")
     botonMascota.addEventListener("click", seleccionarMascotaJugador)
-}
+})
 
 function seleccionarMascotaJugador() {
     let hipodogeInput = document.getElementById("hipodoge")
@@ -41,5 +41,3 @@ function seleccionarMascotaEnemigo() {
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
-
-window.addEventListener("load", iniciarJuego)
