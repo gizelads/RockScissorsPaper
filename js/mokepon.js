@@ -28,6 +28,31 @@ function seleccionarMascotaJugador() {
     } else {
         alert("Debes seleccionar una mascota")
     }
+
+    seleccionarMascotaEnemigo()
+}
+
+function seleccionarMascotaEnemigo() {
+    let mascotaEnemigoAleatorio = aleatorio(1, 6)
+    let mascotaEnemigoSpan = document.getElementById("mascota-enemigo")
+
+    if(mascotaEnemigoAleatorio == 1) {
+        mascotaEnemigoSpan.innerHTML = "Hipodoge💧"
+    } else if(mascotaEnemigoAleatorio == 2) {
+        mascotaEnemigoSpan.innerHTML = "Capipepo🌱"
+    } else if(mascotaEnemigoAleatorio == 3) {
+        mascotaEnemigoSpan.innerHTML = "Ratigueya🔥"
+    } else if(mascotaEnemigoAleatorio == 4) {
+        mascotaEnemigoSpan.innerHTML = "Langostelvis💧🔥"
+    } else if(mascotaEnemigoAleatorio == 5) {
+        mascotaEnemigoSpan.innerHTML = "Tucapalma💧🌱"
+    } else if(mascotaEnemigoAleatorio == 6) {
+        mascotaEnemigoSpan.innerHTML = "Pydos🔥🌱"
+    }
+}
+
+function aleatorio(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 window.addEventListener("load", iniciarJuego)
