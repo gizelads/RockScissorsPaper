@@ -1,4 +1,5 @@
 let ataqueJugador
+let ataqueEnemigo
 
 window.addEventListener("load", () => {   //iniciar juego
     let botonMascota = document.getElementById("boton-mascota")
@@ -53,15 +54,20 @@ function aleatorio(min, max) {
 
 function ataqueFuego() {
     ataqueJugador = "Fuego🔥"
-    alert(ataqueJugador)
+    seleccionarAtaqueEnemigo()
 }
 
 function ataqueAgua() {
     ataqueJugador = "Agua💧"
-    alert(ataqueJugador)
+    seleccionarAtaqueEnemigo()
 }
 
 function ataqueTierra() {
     ataqueJugador = "Tierra🌱"
-    alert(ataqueJugador)
+    seleccionarAtaqueEnemigo()
+}
+
+function seleccionarAtaqueEnemigo() {
+    let nombresAtaques = ["Fuego🔥", "Agua💧", "Tierra🌱"]
+    ataqueEnemigo = nombresAtaques[aleatorio(0, 2)]
 }
