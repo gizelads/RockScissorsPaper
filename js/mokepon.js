@@ -33,22 +33,9 @@ function seleccionarMascotaJugador() {
 }
 
 function seleccionarMascotaEnemigo() {
-    let mascotaEnemigoAleatorio = aleatorio(1, 6)
+    let nombresMascotas = ["Hipodoge💧", "Capipepo🌱", "Ratigueya🔥", "Langostelvis💧🔥", "Tucapalma💧🌱", "Pydos🔥🌱"]
     let mascotaEnemigoSpan = document.getElementById("mascota-enemigo")
-
-    if(mascotaEnemigoAleatorio == 1) {
-        mascotaEnemigoSpan.innerHTML = "Hipodoge💧"
-    } else if(mascotaEnemigoAleatorio == 2) {
-        mascotaEnemigoSpan.innerHTML = "Capipepo🌱"
-    } else if(mascotaEnemigoAleatorio == 3) {
-        mascotaEnemigoSpan.innerHTML = "Ratigueya🔥"
-    } else if(mascotaEnemigoAleatorio == 4) {
-        mascotaEnemigoSpan.innerHTML = "Langostelvis💧🔥"
-    } else if(mascotaEnemigoAleatorio == 5) {
-        mascotaEnemigoSpan.innerHTML = "Tucapalma💧🌱"
-    } else if(mascotaEnemigoAleatorio == 6) {
-        mascotaEnemigoSpan.innerHTML = "Pydos🔥🌱"
-    }
+    mascotaEnemigoSpan.innerHTML = nombresMascotas[aleatorio(0, 5)]
 }
 
 function aleatorio(min, max) {
