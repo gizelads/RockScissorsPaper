@@ -52,6 +52,8 @@ function seleccionarMascotaJugador() {
         mascotaJugadorSpan.innerHTML = "Pydos🔥🌱"
     } else {
         alert("Debes seleccionar una mascota")
+        ataqueSeccion.style.display = "none"
+        mascotaSeccion.style.display = "block"
     }
 
     seleccionarMascotaEnemigo()
