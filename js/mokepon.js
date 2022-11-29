@@ -4,6 +4,11 @@ let vidasJugador = 3
 let vidasEnemigo = 3
 
 window.addEventListener("load", () => {   //iniciar juego
+    let ataqueSeccion = document.getElementById("eleccion-ataque")
+    ataqueSeccion.style.display = "none"
+    let reiniciarSeccion = document.getElementById("reset")
+    reiniciarSeccion.style.display = "none"
+
     let botonMascota = document.getElementById("boton-mascota")
     botonMascota.addEventListener("click", seleccionarMascotaJugador)
 
@@ -19,6 +24,11 @@ window.addEventListener("load", () => {   //iniciar juego
 })
 
 function seleccionarMascotaJugador() {
+    let ataqueSeccion = document.getElementById("eleccion-ataque")
+    ataqueSeccion.style.display = "block"
+    let mascotaSeccion = document.getElementById("eleccion-mascota")
+    mascotaSeccion.style.display = "none"
+
     let hipodogeInput = document.getElementById("hipodoge")
     let capipepoInput = document.getElementById("capipepo")
     let ratigueyaInput = document.getElementById("ratigueya")
@@ -127,6 +137,9 @@ function crearMensajeFinal(resultadoCombate) {
     botonAgua.disabled = true
     let botonTierra = document.getElementById("boton-tierra")
     botonTierra.disabled = true
+
+    let reiniciarSeccion = document.getElementById("reset")
+    reiniciarSeccion.style.display = "block"
 }
 
 function reiniciar() {
