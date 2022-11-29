@@ -83,23 +83,35 @@ function resultadoCombate() {  //agua > fuego, fuego > tierra, tierra > agua
     let vidasJugadorSpan = document.getElementById("vidas-jugador")
     let vidasEnemigoSpan = document.getElementById("vidas-enemigo")
 
-    if (vidasJugador == 0) {        //pierdo
-        crearMensajeFinal("Lo siento, PERDISTE 😭")
-    } else if (vidasEnemigo == 0) { //gano
-        crearMensajeFinal("Felicidades, GANASTE 🤩")
-    } else {                        //sigo jugando
-        if (ataqueJugador == ataqueEnemigo) {
-            crearMensajesCombate("Empate🤝")
+    if (ataqueJugador == ataqueEnemigo) {
+        crearMensajesCombate("Empate🤝")
+    } else if ((ataqueJugador == "Agua💧" && ataqueEnemigo == "Fuego🔥") || (ataqueJugador == "Tierra🌱" && ataqueEnemigo == "Agua💧") || (ataqueJugador == "Fuego🔥" && ataqueEnemigo == "Tierra🌱")) {
+        crearMensajesCombate("Ganaste🎉")
+        vidasEnemigo--
+        vidasEnemigoSpan.innerHTML = vidasEnemigo
+    } else {
+        crearMensajesCombate("Perdiste😵")
+        vidasJugador--
+        vidasJugadorSpan.innerHTML = vidasJugador
+    }
+    revisarVidas()
+}
 
-        } else if ((ataqueJugador == "Agua💧" && ataqueEnemigo == "Fuego🔥") || (ataqueJugador == "Tierra🌱" && ataqueEnemigo == "Agua💧") || (ataqueJugador == "Fuego🔥" && ataqueEnemigo == "Tierra🌱")) {
-            crearMensajesCombate("Ganaste🎉")
-            vidasEnemigo--
-            vidasEnemigoSpan.innerHTML = vidasEnemigo
-        } else {
-            crearMensajesCombate("Perdiste😵")
-            vidasJugador--
-            vidasJugadorSpan.innerHTML = vidasJugador
-        }
+function revisarVidas() {
+    let botonFuego = document.getElementById("boton-fuego")
+    let botonAgua = document.getElementById("boton-agua")
+    let botonTierra = document.getElementById("boton-tierra")
+
+    if (vidasJugador == 0) {
+        crearMensajeFinal("Lo siento, PERDISTE 😭")
+        botonFuego.disabled = true
+        botonAgua.disabled = true
+        botonTierra.disabled = true
+    } else if (vidasEnemigo == 0) {
+        crearMensajeFinal("Felicidades, GANASTE 🤩")
+        botonFuego.disabled = true
+        botonAgua.disabled = true
+        botonTierra.disabled = true
     }
 }
 
