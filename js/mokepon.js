@@ -13,6 +13,9 @@ window.addEventListener("load", () => {   //iniciar juego
     botonAgua.addEventListener("click", ataqueAgua)
     let botonTierra = document.getElementById("boton-tierra")
     botonTierra.addEventListener("click", ataqueTierra)
+
+    let botonReiniciar = document.getElementById("boton-reiniciar")
+    botonReiniciar.addEventListener("click", reiniciar)
 })
 
 function seleccionarMascotaJugador() {
@@ -80,17 +83,23 @@ function resultadoCombate() {  //agua > fuego, fuego > tierra, tierra > agua
     let vidasJugadorSpan = document.getElementById("vidas-jugador")
     let vidasEnemigoSpan = document.getElementById("vidas-enemigo")
 
-    if (ataqueJugador == ataqueEnemigo) {
-        crearMensajesCombate("Empate🤝")
+    if (vidasJugador == 0) {        //pierdo
+        crearMensajeFinal("Lo siento, PERDISTE 😭")
+    } else if (vidasEnemigo == 0) { //gano
+        crearMensajeFinal("Felicidades, GANASTE 🤩")
+    } else {                        //sigo jugando
+        if (ataqueJugador == ataqueEnemigo) {
+            crearMensajesCombate("Empate🤝")
 
-    } else if ((ataqueJugador == "Agua💧" && ataqueEnemigo == "Fuego🔥") || (ataqueJugador == "Tierra🌱" && ataqueEnemigo == "Agua💧") || (ataqueJugador == "Fuego🔥" && ataqueEnemigo == "Tierra🌱")) {
-        crearMensajesCombate("Ganaste🎉")
-        vidasEnemigo--
-        vidasEnemigoSpan.innerHTML = vidasEnemigo
-    } else {
-        crearMensajesCombate("Perdiste😵")
-        vidasJugador--
-        vidasJugadorSpan.innerHTML = vidasJugador
+        } else if ((ataqueJugador == "Agua💧" && ataqueEnemigo == "Fuego🔥") || (ataqueJugador == "Tierra🌱" && ataqueEnemigo == "Agua💧") || (ataqueJugador == "Fuego🔥" && ataqueEnemigo == "Tierra🌱")) {
+            crearMensajesCombate("Ganaste🎉")
+            vidasEnemigo--
+            vidasEnemigoSpan.innerHTML = vidasEnemigo
+        } else {
+            crearMensajesCombate("Perdiste😵")
+            vidasJugador--
+            vidasJugadorSpan.innerHTML = vidasJugador
+        }
     }
 }
 
@@ -102,3 +111,21 @@ function crearMensajesCombate(resultadoAtaques) {
 
     sectionMensajes.appendChild(parrafo)
 }
+
+function crearMensajeFinal(resultadoCombate) {
+    let sectionMensajes = document.getElementById("mensajes")
+
+    let parrafo = document.createElement("h4")
+    parrafo.innerHTML = resultadoCombate
+    sectionMensajes.appendChild(parrafo)
+}
+
+function reiniciar() {
+    vidasJugador = 0
+    vidasEnemigo = 0
+    //borrarMensajesCombate()
+}
+
+/*function borrarMensajesCombate() {
+
+}*/
