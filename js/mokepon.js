@@ -98,20 +98,10 @@ function resultadoCombate() {   //agua > fuego, fuego > tierra, tierra > agua
 }
 
 function revisarVidas() {
-    let botonFuego = document.getElementById("boton-fuego")
-    let botonAgua = document.getElementById("boton-agua")
-    let botonTierra = document.getElementById("boton-tierra")
-
     if (vidasJugador == 0) {
         crearMensajeFinal("Lo siento, PERDISTE 😭")
-        botonFuego.disabled = true
-        botonAgua.disabled = true
-        botonTierra.disabled = true
     } else if (vidasEnemigo == 0) {
         crearMensajeFinal("Felicidades, GANASTE 🤩")
-        botonFuego.disabled = true
-        botonAgua.disabled = true
-        botonTierra.disabled = true
     }
 }
 
@@ -130,6 +120,13 @@ function crearMensajeFinal(resultadoCombate) {
     let parrafo = document.createElement("h4")
     parrafo.innerHTML = resultadoCombate
     sectionMensajes.appendChild(parrafo)
+
+    let botonFuego = document.getElementById("boton-fuego")
+    botonFuego.disabled = true
+    let botonAgua = document.getElementById("boton-agua")
+    botonAgua.disabled = true
+    let botonTierra = document.getElementById("boton-tierra")
+    botonTierra.disabled = true
 }
 
 function reiniciar() {
