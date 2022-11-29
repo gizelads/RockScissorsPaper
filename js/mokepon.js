@@ -1,6 +1,5 @@
 let ataqueJugador
 let ataqueEnemigo
-let resultadoAtaques
 
 window.addEventListener("load", () => {   //iniciar juego
     let botonMascota = document.getElementById("boton-mascota")
