@@ -1,5 +1,7 @@
 let ataqueJugador
 let ataqueEnemigo
+let vidasJugador = 3
+let vidasEnemigo = 3
 
 window.addEventListener("load", () => {   //iniciar juego
     let botonMascota = document.getElementById("boton-mascota")
@@ -23,17 +25,17 @@ function seleccionarMascotaJugador() {
 
     let mascotaJugadorSpan = document.getElementById("mascota-jugador")
 
-    if(hipodogeInput.checked) {
+    if (hipodogeInput.checked) {
         mascotaJugadorSpan.innerHTML = "Hipodoge💧"
-    } else if(capipepoInput.checked) {
+    } else if (capipepoInput.checked) {
         mascotaJugadorSpan.innerHTML = "Capipepo🌱"
-    } else if(ratigueyaInput.checked) {
+    } else if (ratigueyaInput.checked) {
         mascotaJugadorSpan.innerHTML = "Ratigueya🔥"
-    } else if(langostelvisInput.checked) {
+    } else if (langostelvisInput.checked) {
         mascotaJugadorSpan.innerHTML = "Langostelvis💧🔥"
-    } else if(tucapalmaInput.checked) {
+    } else if (tucapalmaInput.checked) {
         mascotaJugadorSpan.innerHTML = "Tucapalma💧🌱"
-    } else if(pydosInput.checked) {
+    } else if (pydosInput.checked) {
         mascotaJugadorSpan.innerHTML = "Pydos🔥🌱"
     } else {
         alert("Debes seleccionar una mascota")
@@ -75,13 +77,20 @@ function seleccionarAtaqueEnemigo() {
 }
 
 function resultadoCombate() {  //agua > fuego, fuego > tierra, tierra > agua
+    let vidasJugadorSpan = document.getElementById("vidas-jugador")
+    let vidasEnemigoSpan = document.getElementById("vidas-enemigo")
+
     if (ataqueJugador == ataqueEnemigo) {
         crearMensajesCombate("Empate🤝")
-        
+
     } else if ((ataqueJugador == "Agua💧" && ataqueEnemigo == "Fuego🔥") || (ataqueJugador == "Tierra🌱" && ataqueEnemigo == "Agua💧") || (ataqueJugador == "Fuego🔥" && ataqueEnemigo == "Tierra🌱")) {
         crearMensajesCombate("Ganaste🎉")
+        vidasEnemigo--
+        vidasEnemigoSpan.innerHTML = vidasEnemigo
     } else {
         crearMensajesCombate("Perdiste😵")
+        vidasJugador--
+        vidasJugadorSpan.innerHTML = vidasJugador
     }
 }
 
