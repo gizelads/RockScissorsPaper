@@ -79,7 +79,7 @@ function seleccionarAtaqueEnemigo() {
     resultadoCombate()
 }
 
-function resultadoCombate() {  //agua > fuego, fuego > tierra, tierra > agua
+function resultadoCombate() {   //agua > fuego, fuego > tierra, tierra > agua
     let vidasJugadorSpan = document.getElementById("vidas-jugador")
     let vidasEnemigoSpan = document.getElementById("vidas-enemigo")
 
@@ -133,11 +133,5 @@ function crearMensajeFinal(resultadoCombate) {
 }
 
 function reiniciar() {
-    vidasJugador = 0
-    vidasEnemigo = 0
-    //borrarMensajesCombate()
+    location.reload()
 }
-
-/*function borrarMensajesCombate() {
-
-}*/
