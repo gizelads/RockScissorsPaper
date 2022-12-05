@@ -1,13 +1,40 @@
 .titulo {
-    color: lightsalmon;
-    width: 274px;
-    height: 50px;
-    background-color: purple;
+    color: #2E2D4D;
+    background-color: #C09BD8;
+    width: 250px;
+    height: 60px;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 #eleccion-mascota {
-    display: flex;          /*Le indicamos a CSS que vamos a utilizar flexbox*/
-    flex-direction: column; /*Por defecto la direccion es row, asi que lo cambiamos a column*/
+    display: flex;      
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.tarjeta-de-personaje {
+    background-color: #EBC3DB;
+    width: 150px;
+    height: 50px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 5px;
+    border: 1px solid #2E2D4D;
+    border-radius: 10px;
+}
+
+input {
+    display: none;
+}
+
+#boton-mascota {
+    color: #2E2D4D;
+    background-color: #C09BD8;
+    border: 2px solid #2E2D4D;
+    border-radius: 50px;
+    height: 30px;
+    width: 120px;
 }
