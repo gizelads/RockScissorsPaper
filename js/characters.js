@@ -9,8 +9,8 @@ window.addEventListener("load", () => {   //iniciar juego
     let reiniciarSeccion = document.getElementById("reset")
     reiniciarSeccion.style.display = "none"
 
-    let botonMascota = document.getElementById("boton-mascota")
-    botonMascota.addEventListener("click", seleccionarMascotaJugador)
+    let botonPersonaje = document.getElementById("boton-personaje")
+    botonPersonaje.addEventListener("click", seleccionarPersonajeJugador)
 
     let botonFuego = document.getElementById("boton-fuego")
     botonFuego.addEventListener("click", ataqueFuego)
@@ -23,11 +23,11 @@ window.addEventListener("load", () => {   //iniciar juego
     botonReiniciar.addEventListener("click", reiniciar)
 })
 
-function seleccionarMascotaJugador() {
+function seleccionarPersonajeJugador() {
     let ataqueSeccion = document.getElementById("eleccion-ataque")
     ataqueSeccion.style.display = "block"
-    let mascotaSeccion = document.getElementById("eleccion-mascota")
-    mascotaSeccion.style.display = "none"
+    let personajeSeccion = document.getElementById("eleccion-personaje")
+    personajeSeccion.style.display = "none"
 
     let hipodogeInput = document.getElementById("hipodoge")
     let capipepoInput = document.getElementById("capipepo")
@@ -36,33 +36,33 @@ function seleccionarMascotaJugador() {
     let tucapalmaInput = document.getElementById("tucapalma")
     let pydosInput = document.getElementById("pydos")
 
-    let mascotaJugadorSpan = document.getElementById("mascota-jugador")
+    let personajeJugadorSpan = document.getElementById("personaje-jugador")
 
     if (hipodogeInput.checked) {
-        mascotaJugadorSpan.innerHTML = "Hipodoge💧"
+        personajeJugadorSpan.innerHTML = "Hipodoge💧"
     } else if (capipepoInput.checked) {
-        mascotaJugadorSpan.innerHTML = "Capipepo🌱"
+        personajeJugadorSpan.innerHTML = "Capipepo🌱"
     } else if (ratigueyaInput.checked) {
-        mascotaJugadorSpan.innerHTML = "Ratigueya🔥"
+        personajeJugadorSpan.innerHTML = "Ratigueya🔥"
     } else if (langostelvisInput.checked) {
-        mascotaJugadorSpan.innerHTML = "Langostelvis💧🔥"
+        personajeJugadorSpan.innerHTML = "Langostelvis💧🔥"
     } else if (tucapalmaInput.checked) {
-        mascotaJugadorSpan.innerHTML = "Tucapalma💧🌱"
+        personajeJugadorSpan.innerHTML = "Tucapalma💧🌱"
     } else if (pydosInput.checked) {
-        mascotaJugadorSpan.innerHTML = "Pydos🔥🌱"
+        personajeJugadorSpan.innerHTML = "Pydos🔥🌱"
     } else {
-        alert("Debes seleccionar una mascota")
+        alert("Debes seleccionar un personaje")
         ataqueSeccion.style.display = "none"
-        mascotaSeccion.style.display = "block"
+        personajeSeccion.style.display = "block"
     }
 
-    seleccionarMascotaEnemigo()
+    seleccionarPersonajeEnemigo()
 }
 
-function seleccionarMascotaEnemigo() {
-    let nombresMascotas = ["Hipodoge💧", "Capipepo🌱", "Ratigueya🔥", "Langostelvis💧🔥", "Tucapalma💧🌱", "Pydos🔥🌱"]
-    let mascotaEnemigoSpan = document.getElementById("mascota-enemigo")
-    mascotaEnemigoSpan.innerHTML = nombresMascotas[aleatorio(0, 5)]
+function seleccionarPersonajeEnemigo() {
+    let nombresPersonajes = ["Hipodoge💧", "Capipepo🌱", "Ratigueya🔥", "Langostelvis💧🔥", "Tucapalma💧🌱", "Pydos🔥🌱"]
+    let personajeEnemigoSpan = document.getElementById("personaje-enemigo")
+    personajeEnemigoSpan.innerHTML = nombresPersonajes[aleatorio(0, 5)]
 }
 
 function aleatorio(min, max) {
@@ -121,7 +121,7 @@ function crearMensajesCombate(resultadoAtaques) {
     let sectionMensajes = document.getElementById("mensajes")
 
     let parrafo = document.createElement("p")
-    parrafo.innerHTML = "Tu mascota atacó con " + ataqueJugador + ", la mascota del enemigo atacó con " + ataqueEnemigo + " - " + resultadoAtaques
+    parrafo.innerHTML = "Tu personaje atacó con " + ataqueJugador + ", el personaje del enemigo atacó con " + ataqueEnemigo + " - " + resultadoAtaques
 
     sectionMensajes.appendChild(parrafo)
 }
