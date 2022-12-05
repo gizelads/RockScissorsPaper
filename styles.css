@@ -5,20 +5,9 @@
     background-color: purple;
 }
 
-label { /*visualizacion de tipo inline por defecto, no le afectan width, height*/
-    background-color: brown;
-    width: 274px;
-    height: 50px;
-}
-
-input { /*visualizacion de tipo inline-block por defecto, porque le afectan las propiedades width, height*/
-    background-color: green;
-    width: 274px;
-    height: 50px;
-}
-
-button { /*visualizacion de tipo inline-block por defecto, porque le afectan las propiedades width, height*/
-    background-color: yellow;
-    width: 274px;
-    height: 50px;
+#eleccion-mascota {
+    display: flex;          /*Le indicamos a CSS que vamos a utilizar flexbox*/
+    flex-direction: column; /*Por defecto la direccion es row, asi que lo cambiamos a column*/
+    justify-content: center;
+    align-items: center;
 }
