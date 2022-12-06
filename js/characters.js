@@ -12,12 +12,12 @@ window.addEventListener("load", () => {   //iniciar juego
     let botonPersonaje = document.getElementById("boton-personaje")
     botonPersonaje.addEventListener("click", seleccionarPersonajeJugador)
 
-    let botonFuego = document.getElementById("boton-fuego")
-    botonFuego.addEventListener("click", ataqueFuego)
-    let botonAgua = document.getElementById("boton-agua")
-    botonAgua.addEventListener("click", ataqueAgua)
-    let botonTierra = document.getElementById("boton-tierra")
-    botonTierra.addEventListener("click", ataqueTierra)
+    let botonPiedra = document.getElementById("boton-piedra")
+    botonPiedra.addEventListener("click", ataquePiedra)
+    let botonPapel = document.getElementById("boton-papel")
+    botonPapel.addEventListener("click", ataquePapel)
+    let botonTijera = document.getElementById("boton-tijera")
+    botonTijera.addEventListener("click", ataqueTijera)
 
     let botonReiniciar = document.getElementById("boton-reiniciar")
     botonReiniciar.addEventListener("click", reiniciar)
@@ -29,29 +29,29 @@ function seleccionarPersonajeJugador() {
     let personajeSeccion = document.getElementById("eleccion-personaje")
     personajeSeccion.style.display = "none"
 
-    let hipodogeInput = document.getElementById("hipodoge")
-    let capipepoInput = document.getElementById("capipepo")
-    let ratigueyaInput = document.getElementById("ratigueya")
-    let langostelvisInput = document.getElementById("langostelvis")
-    let tucapalmaInput = document.getElementById("tucapalma")
-    let pydosInput = document.getElementById("pydos")
+    let adaInput = document.getElementById("ada")
+    let graceInput = document.getElementById("grace")
+    let hedyInput = document.getElementById("hedy")
+    let margaterInput = document.getElementById("margaret")
+    let maryInput = document.getElementById("mary")
+    let valentinaInput = document.getElementById("valentina")
 
     let personajeJugadorSpan = document.getElementById("personaje-jugador")
 
-    if (hipodogeInput.checked) {
-        personajeJugadorSpan.innerHTML = "Hipodoge💧"
-    } else if (capipepoInput.checked) {
-        personajeJugadorSpan.innerHTML = "Capipepo🌱"
-    } else if (ratigueyaInput.checked) {
-        personajeJugadorSpan.innerHTML = "Ratigueya🔥"
-    } else if (langostelvisInput.checked) {
-        personajeJugadorSpan.innerHTML = "Langostelvis💧🔥"
-    } else if (tucapalmaInput.checked) {
-        personajeJugadorSpan.innerHTML = "Tucapalma💧🌱"
-    } else if (pydosInput.checked) {
-        personajeJugadorSpan.innerHTML = "Pydos🔥🌱"
+    if (adaInput.checked) {
+        personajeJugadorSpan.innerHTML = "Ada Lovelace📟"
+    } else if (graceInput.checked) {
+        personajeJugadorSpan.innerHTML = "Grace Hopper🎖️"
+    } else if (hedyInput.checked) {
+        personajeJugadorSpan.innerHTML = "Hedy Lamarr📡"
+    } else if (margaterInput.checked) {
+        personajeJugadorSpan.innerHTML = "Margaret Hamilton🔢"
+    } else if (maryInput.checked) {
+        personajeJugadorSpan.innerHTML = "Mary Jackson🛰️"
+    } else if (valentinaInput.checked) {
+        personajeJugadorSpan.innerHTML = "Valentina Terechkova🚀"
     } else {
-        alert("Debes seleccionar un personaje")
+        alert("Your must select a character.")
         ataqueSeccion.style.display = "none"
         personajeSeccion.style.display = "block"
     }
@@ -60,7 +60,7 @@ function seleccionarPersonajeJugador() {
 }
 
 function seleccionarPersonajeEnemigo() {
-    let nombresPersonajes = ["Hipodoge💧", "Capipepo🌱", "Ratigueya🔥", "Langostelvis💧🔥", "Tucapalma💧🌱", "Pydos🔥🌱"]
+    let nombresPersonajes = ["Ada Lovelace📟", "Grace Hopper🎖️", "Hedy Lamarr📡", "Margaret Hamilton🔢", "Mary Jackson🛰️", "Valentina Terechkova🚀"]
     let personajeEnemigoSpan = document.getElementById("personaje-enemigo")
     personajeEnemigoSpan.innerHTML = nombresPersonajes[aleatorio(0, 5)]
 }
@@ -69,40 +69,40 @@ function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function ataqueFuego() {
-    ataqueJugador = "Fuego🔥"
+function ataquePiedra() {
+    ataqueJugador = "Rock🪨"
     seleccionarAtaqueEnemigo()
 }
 
-function ataqueAgua() {
-    ataqueJugador = "Agua💧"
+function ataquePapel() {
+    ataqueJugador = "Scissors✂️"
     seleccionarAtaqueEnemigo()
 }
 
-function ataqueTierra() {
-    ataqueJugador = "Tierra🌱"
+function ataqueTijera() {
+    ataqueJugador = "Paper📄"
     seleccionarAtaqueEnemigo()
 }
 
 function seleccionarAtaqueEnemigo() {
-    let nombresAtaques = ["Fuego🔥", "Agua💧", "Tierra🌱"]
+    let nombresAtaques = ["Rock🪨", "Scissors✂️", "Paper📄"]
     ataqueEnemigo = nombresAtaques[aleatorio(0, 2)]
 
     resultadoCombate()
 }
 
-function resultadoCombate() {   //agua > fuego, fuego > tierra, tierra > agua
+function resultadoCombate() {
     let vidasJugadorSpan = document.getElementById("vidas-jugador")
     let vidasEnemigoSpan = document.getElementById("vidas-enemigo")
 
     if (ataqueJugador == ataqueEnemigo) {
-        crearMensajesCombate("Empate🤝")
-    } else if ((ataqueJugador == "Agua💧" && ataqueEnemigo == "Fuego🔥") || (ataqueJugador == "Tierra🌱" && ataqueEnemigo == "Agua💧") || (ataqueJugador == "Fuego🔥" && ataqueEnemigo == "Tierra🌱")) {
-        crearMensajesCombate("Ganaste🎉")
+        crearMensajesCombate("Draw🤝")
+    } else if ((ataqueJugador == "Rock🪨" && ataqueEnemigo == "Scissors✂️") || (ataqueJugador == "Scissors✂️" && ataqueEnemigo == "Paper📄") || (ataqueJugador == "Paper📄" && ataqueEnemigo == "Rock🪨")) {
+        crearMensajesCombate("You Win🎉")
         vidasEnemigo--
         vidasEnemigoSpan.innerHTML = vidasEnemigo
     } else {
-        crearMensajesCombate("Perdiste😵")
+        crearMensajesCombate("You Lose😵")
         vidasJugador--
         vidasJugadorSpan.innerHTML = vidasJugador
     }
@@ -111,9 +111,9 @@ function resultadoCombate() {   //agua > fuego, fuego > tierra, tierra > agua
 
 function revisarVidas() {
     if (vidasJugador == 0) {
-        crearMensajeFinal("Lo siento, PERDISTE 😭")
+        crearMensajeFinal("Sorry, YOU LOST 😭!")
     } else if (vidasEnemigo == 0) {
-        crearMensajeFinal("Felicidades, GANASTE 🤩")
+        crearMensajeFinal("Congratulations, YOU WON 🤩!")
     }
 }
 
@@ -121,7 +121,7 @@ function crearMensajesCombate(resultadoAtaques) {
     let sectionMensajes = document.getElementById("mensajes")
 
     let parrafo = document.createElement("p")
-    parrafo.innerHTML = "Tu personaje atacó con " + ataqueJugador + ", el personaje del enemigo atacó con " + ataqueEnemigo + " - " + resultadoAtaques
+    parrafo.innerHTML = "Your character attacked with " + ataqueJugador + ", the enemy's character attacked with " + ataqueEnemigo + " - " + resultadoAtaques
 
     sectionMensajes.appendChild(parrafo)
 }
@@ -133,12 +133,12 @@ function crearMensajeFinal(resultadoCombate) {
     parrafo.innerHTML = resultadoCombate
     sectionMensajes.appendChild(parrafo)
 
-    let botonFuego = document.getElementById("boton-fuego")
-    botonFuego.disabled = true
-    let botonAgua = document.getElementById("boton-agua")
-    botonAgua.disabled = true
-    let botonTierra = document.getElementById("boton-tierra")
-    botonTierra.disabled = true
+    let botonPiedra = document.getElementById("boton-piedra")
+    botonPiedra.disabled = true
+    let botonPapel = document.getElementById("boton-papel")
+    botonPapel.disabled = true
+    let botonTijera = document.getElementById("boton-tijera")
+    botonTijera.disabled = true
 
     let reiniciarSeccion = document.getElementById("reset")
     reiniciarSeccion.style.display = "block"

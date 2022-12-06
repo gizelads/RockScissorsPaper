@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai&family=Salsa&family=Tinos:ital@1&display=swap');
 
 body {
     background-color: #C09BD8;
-    font-family: 'Salsa', cursive;
+    font-family: 'Arima Madurai', cursive;
 }
 
 #eleccion-personaje {
@@ -16,16 +16,18 @@ body {
     color: white;
     background-color: #2E2D4D;
     font-size: 32px;
-    width: 324px;
+    width: 537px;
     height: 60px;
     box-sizing: border-box;
     padding: 10px;
     border-radius: 10px;
+    font-family: 'Salsa', cursive;
 }
 
 .subtitulo {
     color: #2E2D4D;
-    font-size: 24px;
+    font-size: 28px;
+    font-family: 'Tinos', serif;
 }
 
 .tarjetas {
@@ -35,11 +37,11 @@ body {
 
 .tarjeta-de-personaje {
     background-color: #EBC3DB;
-    width: 175px;
-    height: 150px;
+    width: 190px;
+    height: 130px;
     padding: 10px;
     box-sizing: border-box;
-    border: 1px solid #2E2D4D;
+    border: 2px solid #2E2D4D;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -47,7 +49,7 @@ body {
 }
 
 .tarjeta-de-personaje img {
-    width: 80px;
+    width: 100px;
 }
 
 input {
@@ -61,6 +63,7 @@ button {
     border-radius: 20px;
     height: 40px;
     width: 180px;
-    margin: 10px;
-    font-family: 'Lucida Sans', Verdana, sans-serif
+    margin-top: 10px;
+    font-family: 'Arima Madurai', cursive;
+    font-size: 16px;
 }
