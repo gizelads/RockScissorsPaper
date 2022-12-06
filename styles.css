@@ -1,11 +1,8 @@
-.titulo {
-    color: #2E2D4D;
+@import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
+
+body {
     background-color: #C09BD8;
-    width: 250px;
-    height: 60px;
-    box-sizing: border-box;
-    padding: 10px;
-    border-radius: 10px;
+    font-family: 'Salsa', cursive;
 }
 
 #eleccion-personaje {
@@ -15,15 +12,42 @@
     align-items: center;
 }
 
+.titulo {
+    color: white;
+    background-color: #2E2D4D;
+    font-size: 32px;
+    width: 324px;
+    height: 60px;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.subtitulo {
+    color: #2E2D4D;
+    font-size: 24px;
+}
+
+.tarjetas {
+    display: flex;
+    gap: 5px;
+}
+
 .tarjeta-de-personaje {
     background-color: #EBC3DB;
-    width: 150px;
-    height: 50px;
+    width: 175px;
+    height: 150px;
     padding: 10px;
     box-sizing: border-box;
-    margin: 5px;
     border: 1px solid #2E2D4D;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tarjeta-de-personaje img {
+    width: 80px;
 }
 
 input {
@@ -31,10 +55,11 @@ input {
 }
 
 #boton-personaje {
-    color: #2E2D4D;
-    background-color: #C09BD8;
+    color: white;
+    background-color: #2E2D4D;
     border: 2px solid #2E2D4D;
-    border-radius: 50px;
+    border-radius: 10px;
     height: 30px;
     width: 120px;
+    margin: 5px;
 }
