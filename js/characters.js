@@ -53,7 +53,7 @@ function seleccionarPersonajeJugador() {
     } else {
         alert("Your must select a character.")
         ataqueSeccion.style.display = "none"
-        personajeSeccion.style.display = "block"
+        personajeSeccion.style.display = "flex"
     }
 
     seleccionarPersonajeEnemigo()
