@@ -14,6 +14,7 @@
         <h1 class="titulo">Characters: Rock, Scissors & Paper.</h1>
 
         <h2 class="subtitulo">Select your character:</h2>
+
         <div class="tarjetas">
             <div class="tarjetas-grupo1">
                 <label class="tarjeta-de-personaje" for="ada">
@@ -21,13 +22,13 @@
                     <img src="./assets/ada-lovelace.png" alt="ada">
                 </label>
                 <input type="radio" name="personaje" id="ada" />
-    
+
                 <label class="tarjeta-de-personaje" for="grace">
                     <p>Grace Hopper</p>
                     <img src="./assets/grace-hopper.png" alt="grace">
                 </label>
                 <input type="radio" name="personaje" id="grace" />
-    
+
                 <label class="tarjeta-de-personaje" for="hedy">
                     <p>Hedy Lamarr</p>
                     <img src="./assets/hedy-lamarr.png" alt="hedy">
@@ -40,13 +41,13 @@
                     <img src="./assets/margaret-hamilton.png" alt="margaret">
                 </label>
                 <input type="radio" name="personaje" id="margaret" />
-    
+
                 <label class="tarjeta-de-personaje" for="mary">
                     <p>Mary Jackson</p>
                     <img src="./assets/mary-jackson.png" alt="mary">
                 </label>
                 <input type="radio" name="personaje" id="mary" />
-    
+
                 <label class="tarjeta-de-personaje" for="valentina">
                     <p>Valentina Tereshkova</p>
                     <img src="./assets/valentina-tereshkova.png" alt="valentina">
@@ -62,20 +63,25 @@
         <h1 class="titulo">Characters: Rock, Scissors & Paper.</h1>
 
         <h2 class="subtitulo">Select your attack:</h2>
-        <p>Your character <span id="personaje-jugador"></span> has <span id="vidas-jugador">3</span> lives.</p>
-        <p>The character's enemy <span id="personaje-enemigo"></span> has <span id="vidas-enemigo">3</span> lives.</p>
-        <p>
+
+        <div>
             <button id="boton-piedra">Rock🪨</button>
             <button id="boton-tijera">Scissors✂️</button>
             <button id="boton-papel">Paper📄</button>
-        </p>
-    </section>
+        </div>
+        <div>
+            <section id="mensajes">
+            </section>
 
-    <section id="mensajes">
-    </section>
-
-    <section id="reset">
-        <button id="boton-reiniciar">Play Again!</button>
+            <section id="reset">
+                <button id="boton-reiniciar">Play Again!</button>
+            </section>
+        </div>
+        <div>
+            <p>Your character <span id="personaje-jugador"></span> has <span id="vidas-jugador">3</span> lives.</p>
+            <p>The character's enemy <span id="personaje-enemigo"></span> has <span id="vidas-enemigo">3</span> lives.
+            </p>
+        </div>
     </section>
 </body>
 
