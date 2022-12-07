@@ -25,7 +25,7 @@ window.addEventListener("load", () => {   //iniciar juego
 
 function seleccionarPersonajeJugador() {
     let ataqueSeccion = document.getElementById("eleccion-ataque")
-    ataqueSeccion.style.display = "block"
+    ataqueSeccion.style.display = "flex"
     let personajeSeccion = document.getElementById("eleccion-personaje")
     personajeSeccion.style.display = "none"
 
