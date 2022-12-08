@@ -14,10 +14,10 @@ window.addEventListener("load", () => {   //iniciar juego
 
     let botonPiedra = document.getElementById("boton-piedra")
     botonPiedra.addEventListener("click", ataquePiedra)
-    let botonPapel = document.getElementById("boton-papel")
-    botonPapel.addEventListener("click", ataquePapel)
     let botonTijera = document.getElementById("boton-tijera")
     botonTijera.addEventListener("click", ataqueTijera)
+    let botonPapel = document.getElementById("boton-papel")
+    botonPapel.addEventListener("click", ataquePapel)
 
     let botonReiniciar = document.getElementById("boton-reiniciar")
     botonReiniciar.addEventListener("click", reiniciar)
@@ -118,20 +118,24 @@ function revisarVidas() {
 }
 
 function crearMensajesCombate(resultadoAtaques) {
-    let sectionMensajes = document.getElementById("mensajes")
+    let mensajesResultado = document.getElementById("resultado")
+    let mensajesAtaqueJugador = document.getElementById("ataque-del-jugador")
+    let mensajesAtaqueEnemigo = document.getElementById("ataque-del-enemigo")
 
-    let parrafo = document.createElement("p")
-    parrafo.innerHTML = "Your character attacked with " + ataqueJugador + ", the enemy's character attacked with " + ataqueEnemigo + " - " + resultadoAtaques
+    let parrafoAtaqueJugador = document.createElement("p")
+    let parrafoAtaqueEnemigo = document.createElement("p")
 
-    sectionMensajes.appendChild(parrafo)
+    mensajesResultado.innerHTML = resultadoAtaques
+    parrafoAtaqueJugador.innerHTML = ataqueJugador
+    parrafoAtaqueEnemigo.innerHTML = ataqueEnemigo
+
+    mensajesAtaqueJugador.appendChild(parrafoAtaqueJugador)
+    mensajesAtaqueEnemigo.appendChild(parrafoAtaqueEnemigo)
 }
 
 function crearMensajeFinal(resultadoCombate) {
-    let sectionMensajes = document.getElementById("mensajes")
-
-    let parrafo = document.createElement("h4")
-    parrafo.innerHTML = resultadoCombate
-    sectionMensajes.appendChild(parrafo)
+    let mensajesResultado = document.getElementById("resultado")
+    mensajesResultado.innerHTML = resultadoCombate
 
     let botonPiedra = document.getElementById("boton-piedra")
     botonPiedra.disabled = true
