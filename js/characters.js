@@ -74,12 +74,12 @@ function ataquePiedra() {
     seleccionarAtaqueEnemigo()
 }
 
-function ataquePapel() {
+function ataqueTijera() {
     ataqueJugador = "Scissors✂️"
     seleccionarAtaqueEnemigo()
 }
 
-function ataqueTijera() {
+function ataquePapel() {
     ataqueJugador = "Paper📄"
     seleccionarAtaqueEnemigo()
 }
