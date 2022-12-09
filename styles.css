@@ -121,3 +121,9 @@ input {
     font-size: 13px;
     text-decoration: underline;
 }
+
+.combate {
+    display: grid;
+    grid-template-columns: 180px 180px;
+    text-align: center;
+}
