@@ -135,7 +135,7 @@ input {
     margin-left: 8px;
 }
 
-@media (max-width: 360px) {  /* media querie */
+@media (max-width: 425px) {
     .tarjetas-grupo1, .tarjetas-grupo2, .botones-ataque {
         flex-direction: column;
     }
