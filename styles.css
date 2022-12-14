@@ -6,7 +6,7 @@ body {
 }
 
 #eleccion-personaje {
-    display: flex;      
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
@@ -35,7 +35,9 @@ body {
     gap: 5px;
 }
 
-.tarjetas-grupo1, .tarjetas-grupo2, .botones-ataque {
+.tarjetas-grupo1,
+.tarjetas-grupo2,
+.botones-ataque {
     display: flex;
     gap: 5px;
 }
@@ -61,6 +63,10 @@ input {
     display: none;
 }
 
+input:checked + label {
+    background-color: #e9b5d4;
+}
+
 #boton-personaje {
     color: white;
     background-color: #2E2D4D;
@@ -73,13 +79,19 @@ input {
     font-size: 16px;
 }
 
+#boton-personaje:hover {
+    background-color: #3b3961;
+}
+
 #eleccion-ataque {
     /*display: flex; No es necesario, se esta tomando del .js*/
     flex-direction: column;
     align-items: center;
 }
 
-#boton-piedra, #boton-tijera, #boton-papel {
+#boton-piedra,
+#boton-tijera,
+#boton-papel {
     background-color: #EBC3DB;
     border: 2px solid #2E2D4D;
     color: black;
@@ -88,6 +100,12 @@ input {
     width: 180px;
     font-family: 'Arima Madurai', cursive;
     font-size: 16px;
+}
+
+#boton-piedra:hover,
+#boton-tijera:hover,
+#boton-papel:hover {
+    background-color: #e9b5d4;
 }
 
 #mensajes {
@@ -109,10 +127,13 @@ input {
 #boton-reiniciar {
     background-color: transparent;
     border: none;
-    color: #2E2D4D;
     font-family: 'Arima Madurai', cursive;
     font-size: 13px;
     text-decoration: underline;
+}
+
+#boton-reiniciar:hover {
+    color: #2E2D4D;
 }
 
 .combate {
@@ -121,22 +142,19 @@ input {
     text-align: center;
 }
 
-#combate-jugador {
-    background-color: #b8c5d4;
-    border-radius: 20px;
-    margin-top: 16px;
-    margin-right: 8px;
-}
-
+#combate-jugador,
 #combate-enemigo {
-    background-color: #c2b5cf;
+    background-color: #e9b5d4;
     border-radius: 20px;
     margin-top: 16px;
     margin-left: 8px;
 }
 
 @media (max-width: 425px) {
-    .tarjetas-grupo1, .tarjetas-grupo2, .botones-ataque {
+
+    .tarjetas-grupo1,
+    .tarjetas-grupo2,
+    .botones-ataque {
         flex-direction: column;
     }
 }
