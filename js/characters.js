@@ -36,20 +36,20 @@ function seleccionarPersonajeJugador() {
     let maryInput = document.getElementById("mary")
     let valentinaInput = document.getElementById("valentina")
 
-    let personajeJugadorSpan = document.getElementById("personaje-jugador")
+    let personajeJugadorParrafo = document.getElementById("personaje-jugador")
 
     if (adaInput.checked) {
-        personajeJugadorSpan.innerHTML = "Ada Lovelace📟"
+        personajeJugadorParrafo.innerHTML = "<img src=\"./assets/ada-lovelace.png\" alt=\"ada\">"
     } else if (graceInput.checked) {
-        personajeJugadorSpan.innerHTML = "Grace Hopper🎖️"
+        personajeJugadorParrafo.innerHTML = "<img src=\"./assets/grace-hopper.png\" alt=\"grace\">"
     } else if (hedyInput.checked) {
-        personajeJugadorSpan.innerHTML = "Hedy Lamarr📡"
+        personajeJugadorParrafo.innerHTML = "<img src=\"./assets/hedy-lamarr.png\" alt=\"hedy\">"
     } else if (margaterInput.checked) {
-        personajeJugadorSpan.innerHTML = "Margaret Hamilton🔢"
+        personajeJugadorParrafo.innerHTML = "<img src=\"./assets/margaret-hamilton.png\" alt=\"margaret\">"
     } else if (maryInput.checked) {
-        personajeJugadorSpan.innerHTML = "Mary Jackson🛰️"
+        personajeJugadorParrafo.innerHTML = "<img src=\"./assets/mary-jackson.png\" alt=\"mary\">"
     } else if (valentinaInput.checked) {
-        personajeJugadorSpan.innerHTML = "Valentina Terechkova🚀"
+        personajeJugadorParrafo.innerHTML = "<img src=\"./assets/valentina-tereshkova.png\" alt=\"valentina\">"
     } else {
         alert("Your must select a character.")
         ataqueSeccion.style.display = "none"
@@ -60,9 +60,9 @@ function seleccionarPersonajeJugador() {
 }
 
 function seleccionarPersonajeEnemigo() {
-    let nombresPersonajes = ["Ada Lovelace📟", "Grace Hopper🎖️", "Hedy Lamarr📡", "Margaret Hamilton🔢", "Mary Jackson🛰️", "Valentina Terechkova🚀"]
-    let personajeEnemigoSpan = document.getElementById("personaje-enemigo")
-    personajeEnemigoSpan.innerHTML = nombresPersonajes[aleatorio(0, 5)]
+    let nombresPersonajes = ["<img src=\"./assets/ada-lovelace.png\" alt=\"ada\">", "<img src=\"./assets/grace-hopper.png\" alt=\"grace\">", "<img src=\"./assets/hedy-lamarr.png\" alt=\"hedy\">", "<img src=\"./assets/margaret-hamilton.png\" alt=\"margaret\">", "<img src=\"./assets/mary-jackson.png\" alt=\"mary\">", "<img src=\"./assets/valentina-tereshkova.png\" alt=\"valentina\">"]
+    let personajeEnemigoParrafo = document.getElementById("personaje-enemigo")
+    personajeEnemigoParrafo.innerHTML = nombresPersonajes[aleatorio(0, 5)]
 }
 
 function aleatorio(min, max) {

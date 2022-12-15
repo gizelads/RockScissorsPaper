@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Arima+Madurai&family=Salsa&family=Tinos:ital@1&display=swap');
 
 body {
-    background: linear-gradient(to left, #9a7cb4, #dfacb6, #95b2d3);
+    background: linear-gradient(to right, #FFA686, #FFB8DE, #7DCFB6);
     font-family: 'Arima Madurai', cursive;
 }
 
@@ -13,9 +13,9 @@ body {
 
 .titulo {
     color: white;
-    background-color: #2E2D4D;
+    background-color: #4C3A51;
     font-size: 28px;
-    width: 320px;
+    width: 310px;
     height: 60px;
     box-sizing: border-box;
     padding: 10px;
@@ -24,8 +24,8 @@ body {
 }
 
 .subtitulo {
-    color: #2E2D4D;
-    font-size: 28px;
+    color: #774360;
+    font-size: 24px;
     font-family: 'Tinos', serif;
 }
 
@@ -43,12 +43,13 @@ body {
 }
 
 .tarjeta-de-personaje {
-    background-color: #EBC3DB;
+    color: white;
+    background-color: #B25068;
     width: 190px;
     height: 130px;
     padding: 10px;
     box-sizing: border-box;
-    border: 2px solid #2E2D4D;
+    border: 2px solid white;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -59,28 +60,43 @@ body {
     width: 100px;
 }
 
+.tarjeta-de-personaje p {
+    text-align: center;
+}
+
 input {
     display: none;
 }
 
 input:checked + label {
-    background-color: #e9b5d4;
+    background-color: #E7AB79;
+    color: black;
+    border: 2px solid #774360;
 }
 
-#boton-personaje {
+#boton-personaje, 
+#boton-piedra,
+#boton-tijera,
+#boton-papel {
     color: white;
-    background-color: #2E2D4D;
+    background-color: #774360;
     border: 2px solid white;
     border-radius: 20px;
     height: 40px;
     width: 180px;
-    margin-top: 10px;
     font-family: 'Arima Madurai', cursive;
     font-size: 16px;
 }
 
-#boton-personaje:hover {
-    background-color: #3b3961;
+#boton-personaje {
+    margin-top: 10px;
+}
+
+#boton-personaje:hover,
+#boton-piedra:hover,
+#boton-tijera:hover,
+#boton-papel:hover {
+    background-color: #4C3A51;
 }
 
 #eleccion-ataque {
@@ -89,27 +105,9 @@ input:checked + label {
     align-items: center;
 }
 
-#boton-piedra,
-#boton-tijera,
-#boton-papel {
-    background-color: #EBC3DB;
-    border: 2px solid #2E2D4D;
-    color: black;
-    border-radius: 10px;
-    height: 40px;
-    width: 180px;
-    font-family: 'Arima Madurai', cursive;
-    font-size: 16px;
-}
-
-#boton-piedra:hover,
-#boton-tijera:hover,
-#boton-papel:hover {
-    background-color: #e9b5d4;
-}
-
 #mensajes {
-    background: #EBC3DB;
+    background: #E7AB79;
+    border: 2px solid #774360;
     width: 300px;
     border-radius: 20px;
     padding: 20px;
@@ -125,15 +123,16 @@ input:checked + label {
 }
 
 #boton-reiniciar {
+    color: white;
     background-color: transparent;
     border: none;
     font-family: 'Arima Madurai', cursive;
-    font-size: 13px;
+    font-size: 12px;
     text-decoration: underline;
 }
 
 #boton-reiniciar:hover {
-    color: #2E2D4D;
+    color: #4C3A51;
 }
 
 .combate {
@@ -144,10 +143,25 @@ input:checked + label {
 
 #combate-jugador,
 #combate-enemigo {
-    background-color: #e9b5d4;
+    color: white;
+    background-color: #B25068;
+    border: 2px solid white;
     border-radius: 20px;
     margin-top: 16px;
     margin-left: 8px;
+}
+
+#vidas-jugador, #vidas-enemigo {
+    font-size: 20px;
+    margin-block-end: 1px;
+}
+
+#personaje-jugador, #personaje-enemigo {
+    margin-block-start: 1px;
+}
+
+#personaje-jugador img , #personaje-enemigo img {
+    width: 140px;
 }
 
 @media (max-width: 425px) {
