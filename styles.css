@@ -80,7 +80,7 @@ input:checked + label {
 #boton-papel {
     color: white;
     background-color: #774360;
-    border: 2px solid white;
+    border: 2px outset white;
     border-radius: 20px;
     height: 40px;
     width: 180px;
@@ -107,7 +107,7 @@ input:checked + label {
 
 #mensajes {
     background: #E7AB79;
-    border: 2px solid #774360;
+    border: 2px dashed #774360;
     width: 300px;
     border-radius: 20px;
     padding: 20px;
@@ -151,9 +151,10 @@ input:checked + label {
     margin-left: 8px;
 }
 
-#vidas-jugador, #vidas-enemigo {
+.info-combate {
     font-size: 20px;
     margin-block-end: 1px;
+    margin-block-start: 8px;
 }
 
 #personaje-jugador, #personaje-enemigo {
