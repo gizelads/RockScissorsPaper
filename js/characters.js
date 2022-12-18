@@ -1,43 +1,47 @@
+const ataqueSeccion = document.getElementById("eleccion-ataque")
+const reiniciarSeccion = document.getElementById("reset")
+const botonPersonaje = document.getElementById("boton-personaje")
+const botonPiedra = document.getElementById("boton-piedra")
+const botonTijera = document.getElementById("boton-tijera")
+const botonPapel = document.getElementById("boton-papel")
+const botonReiniciar = document.getElementById("boton-reiniciar")
+
+const personajeSeccion = document.getElementById("eleccion-personaje")
+const adaInput = document.getElementById("ada")
+const graceInput = document.getElementById("grace")
+const hedyInput = document.getElementById("hedy")
+const margaterInput = document.getElementById("margaret")
+const maryInput = document.getElementById("mary")
+const valentinaInput = document.getElementById("valentina")
+const personajeJugadorParrafo = document.getElementById("personaje-jugador")
+
+const personajeEnemigoParrafo = document.getElementById("personaje-enemigo")
+
+const vidasJugadorSpan = document.getElementById("vidas-jugador")
+const vidasEnemigoSpan = document.getElementById("vidas-enemigo")
+
+const mensajesResultado = document.getElementById("resultado")
+const mensajesAtaqueJugador = document.getElementById("ataque-del-jugador")
+const mensajesAtaqueEnemigo = document.getElementById("ataque-del-enemigo")
+
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
 
 window.addEventListener("load", () => {   //iniciar juego
-    let ataqueSeccion = document.getElementById("eleccion-ataque")
     ataqueSeccion.style.display = "none"
-    let reiniciarSeccion = document.getElementById("reset")
     reiniciarSeccion.style.display = "none"
-
-    let botonPersonaje = document.getElementById("boton-personaje")
     botonPersonaje.addEventListener("click", seleccionarPersonajeJugador)
-
-    let botonPiedra = document.getElementById("boton-piedra")
     botonPiedra.addEventListener("click", ataquePiedra)
-    let botonTijera = document.getElementById("boton-tijera")
     botonTijera.addEventListener("click", ataqueTijera)
-    let botonPapel = document.getElementById("boton-papel")
     botonPapel.addEventListener("click", ataquePapel)
-
-    let botonReiniciar = document.getElementById("boton-reiniciar")
     botonReiniciar.addEventListener("click", reiniciar)
 })
 
 function seleccionarPersonajeJugador() {
-    let ataqueSeccion = document.getElementById("eleccion-ataque")
     ataqueSeccion.style.display = "flex"
-    let personajeSeccion = document.getElementById("eleccion-personaje")
     personajeSeccion.style.display = "none"
-
-    let adaInput = document.getElementById("ada")
-    let graceInput = document.getElementById("grace")
-    let hedyInput = document.getElementById("hedy")
-    let margaterInput = document.getElementById("margaret")
-    let maryInput = document.getElementById("mary")
-    let valentinaInput = document.getElementById("valentina")
-
-    let personajeJugadorParrafo = document.getElementById("personaje-jugador")
-
     if (adaInput.checked) {
         personajeJugadorParrafo.innerHTML = "<img src=\"./assets/ada-lovelace.png\" alt=\"ada\">"
     } else if (graceInput.checked) {
@@ -61,7 +65,6 @@ function seleccionarPersonajeJugador() {
 
 function seleccionarPersonajeEnemigo() {
     let nombresPersonajes = ["<img src=\"./assets/ada-lovelace.png\" alt=\"ada\">", "<img src=\"./assets/grace-hopper.png\" alt=\"grace\">", "<img src=\"./assets/hedy-lamarr.png\" alt=\"hedy\">", "<img src=\"./assets/margaret-hamilton.png\" alt=\"margaret\">", "<img src=\"./assets/mary-jackson.png\" alt=\"mary\">", "<img src=\"./assets/valentina-tereshkova.png\" alt=\"valentina\">"]
-    let personajeEnemigoParrafo = document.getElementById("personaje-enemigo")
     personajeEnemigoParrafo.innerHTML = nombresPersonajes[aleatorio(0, 5)]
 }
 
@@ -92,9 +95,6 @@ function seleccionarAtaqueEnemigo() {
 }
 
 function resultadoCombate() {
-    let vidasJugadorSpan = document.getElementById("vidas-jugador")
-    let vidasEnemigoSpan = document.getElementById("vidas-enemigo")
-
     if (ataqueJugador == ataqueEnemigo) {
         crearMensajesCombate("Draw🤝")
     } else if ((ataqueJugador == "Rock🪨" && ataqueEnemigo == "Scissors✂️") || (ataqueJugador == "Scissors✂️" && ataqueEnemigo == "Paper📄") || (ataqueJugador == "Paper📄" && ataqueEnemigo == "Rock🪨")) {
@@ -118,10 +118,6 @@ function revisarVidas() {
 }
 
 function crearMensajesCombate(resultadoAtaques) {
-    let mensajesResultado = document.getElementById("resultado")
-    let mensajesAtaqueJugador = document.getElementById("ataque-del-jugador")
-    let mensajesAtaqueEnemigo = document.getElementById("ataque-del-enemigo")
-
     let parrafoAtaqueJugador = document.createElement("p")
     let parrafoAtaqueEnemigo = document.createElement("p")
 
@@ -134,17 +130,10 @@ function crearMensajesCombate(resultadoAtaques) {
 }
 
 function crearMensajeFinal(resultadoCombate) {
-    let mensajesResultado = document.getElementById("resultado")
     mensajesResultado.innerHTML = resultadoCombate
-
-    let botonPiedra = document.getElementById("boton-piedra")
     botonPiedra.disabled = true
-    let botonPapel = document.getElementById("boton-papel")
     botonPapel.disabled = true
-    let botonTijera = document.getElementById("boton-tijera")
     botonTijera.disabled = true
-
-    let reiniciarSeccion = document.getElementById("reset")
     reiniciarSeccion.style.display = "block"
 }
 
