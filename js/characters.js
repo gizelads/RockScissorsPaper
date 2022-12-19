@@ -29,6 +29,21 @@ let ataqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
 
+class Personaje {
+    constructor(nombre, foto, vida) {
+        this.nombre = nombre
+        this.foto = foto
+        this.vida = vida
+    }
+}
+
+let ada = new Personaje("Ada Lovelace💜", "./assets/ada-lovelace.png", 5)
+let grace = new Personaje("Grace Hopper🎖️", "./assets/grace-hopper.png", 5)
+let hedy = new Personaje("Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5)
+let margaret = new Personaje("Margaret Hamilton🔢", "./assets/margaret-hamilton.png", 5)
+let mary = new Personaje("Mary Jackson🛰️", "./assets/mary-jackson.png", 5)
+let valentina = new Personaje("Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5)
+
 window.addEventListener("load", () => {   //iniciar juego
     ataqueSeccion.style.display = "none"
     reiniciarSeccion.style.display = "none"
