@@ -24,6 +24,7 @@ const mensajesResultado = document.getElementById("resultado")
 const mensajesAtaqueJugador = document.getElementById("ataque-del-jugador")
 const mensajesAtaqueEnemigo = document.getElementById("ataque-del-enemigo")
 
+let personajes = []
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
@@ -43,6 +44,8 @@ let hedy = new Personaje("Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5)
 let margaret = new Personaje("Margaret Hamilton🔢", "./assets/margaret-hamilton.png", 5)
 let mary = new Personaje("Mary Jackson🛰️", "./assets/mary-jackson.png", 5)
 let valentina = new Personaje("Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5)
+
+personajes.push(ada, grace, hedy, margaret, mary, valentina)
 
 window.addEventListener("load", () => {   //iniciar juego
     ataqueSeccion.style.display = "none"
