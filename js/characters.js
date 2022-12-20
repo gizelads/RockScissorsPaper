@@ -24,7 +24,7 @@ const mensajesResultado = document.getElementById("resultado")
 const mensajesAtaqueJugador = document.getElementById("ataque-del-jugador")
 const mensajesAtaqueEnemigo = document.getElementById("ataque-del-enemigo")
 
-let personajes = []
+/* let personajes = [] */
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
@@ -35,6 +35,7 @@ class Personaje {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
+        this.ataques = []
     }
 }
 
@@ -45,7 +46,53 @@ let margaret = new Personaje("Margaret Hamilton🔢", "./assets/margaret-hamilto
 let mary = new Personaje("Mary Jackson🛰️", "./assets/mary-jackson.png", 5)
 let valentina = new Personaje("Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5)
 
-personajes.push(ada, grace, hedy, margaret, mary, valentina)
+ada.ataques.push(
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "📄", id: "boton-papel" }
+)
+
+grace.ataques.push(
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "📄", id: "boton-papel" }
+)
+
+hedy.ataques.push(
+    { nombre: "📄", id: "boton-papel" },
+    { nombre: "📄", id: "boton-papel" },
+    { nombre: "📄", id: "boton-papel" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "✂️", id: "boton-tijera" }
+)
+
+margaret.ataques.push(
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "📄", id: "boton-papel" }
+)
+
+mary.ataques.push(
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "📄", id: "boton-papel" }
+)
+
+valentina.ataques.push(
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "📄", id: "boton-papel" }
+)
 
 window.addEventListener("load", () => {   //iniciar juego
     ataqueSeccion.style.display = "none"
