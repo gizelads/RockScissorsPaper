@@ -23,15 +23,20 @@ const vidasEnemigoSpan = document.getElementById("vidas-enemigo")
 const mensajesResultado = document.getElementById("resultado")
 const mensajesAtaqueJugador = document.getElementById("ataque-del-jugador")
 const mensajesAtaqueEnemigo = document.getElementById("ataque-del-enemigo")
+const contenedorTarjetasGrupo1 = document.getElementById("contenedor-tarjetas-grupo1")
+const contenedorTarjetasGrupo2 = document.getElementById("contenedor-tarjetas-grupo2")
 
-/* let personajes = [] */
+let personajesGrupo1 = []
+let personajesGrupo2 = []
 let ataqueJugador
 let ataqueEnemigo
+let opcionPersonajes
 let vidasJugador = 3
 let vidasEnemigo = 3
 
 class Personaje {
-    constructor(nombre, foto, vida) {
+    constructor(id, nombre, foto, vida) {
+        this.id = id
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
@@ -39,12 +44,12 @@ class Personaje {
     }
 }
 
-let ada = new Personaje("Ada Lovelace💜", "./assets/ada-lovelace.png", 5)
-let grace = new Personaje("Grace Hopper🎖️", "./assets/grace-hopper.png", 5)
-let hedy = new Personaje("Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5)
-let margaret = new Personaje("Margaret Hamilton🔢", "./assets/margaret-hamilton.png", 5)
-let mary = new Personaje("Mary Jackson🛰️", "./assets/mary-jackson.png", 5)
-let valentina = new Personaje("Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5)
+let ada = new Personaje("ada", "Ada Lovelace💜", "./assets/ada-lovelace.png", 5)
+let grace = new Personaje("grace", "Grace Hopper🎖️", "./assets/grace-hopper.png", 5)
+let hedy = new Personaje("hedy", "Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5)
+let margaret = new Personaje("margaret", "Margaret Hamilton🔢", "./assets/margaret-hamilton.png", 5)
+let mary = new Personaje("mary", "Mary Jackson🛰️", "./assets/mary-jackson.png", 5)
+let valentina = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5)
 
 ada.ataques.push(
     { nombre: "🪨", id: "boton-piedra" },
@@ -94,9 +99,36 @@ valentina.ataques.push(
     { nombre: "📄", id: "boton-papel" }
 )
 
+personajesGrupo1.push(ada, grace, hedy)
+personajesGrupo2.push(margaret, mary, valentina)
+
 window.addEventListener("load", () => {   //iniciar juego
     ataqueSeccion.style.display = "none"
     reiniciarSeccion.style.display = "none"
+
+    personajesGrupo1.forEach((personaje) => {   //   Template Literals
+        opcionDePersonajes1 = `
+        <input type="radio" name="personaje" id=${personaje.id} />
+                <label class="tarjeta-de-personaje" for=${personaje.id}>
+                    <p>${personaje.nombre}</p>
+                    <img src=${personaje.foto} alt=${personaje.id}>
+                </label>
+        `
+        contenedorTarjetasGrupo1.innerHTML += opcionDePersonajes1
+    })
+
+    personajesGrupo2.forEach((personaje) => {
+        opcionPersonajes2 = `
+        <input type="radio" name="personaje" id=${personaje.id} />
+                <label class="tarjeta-de-personaje" for=${personaje.id}>
+                    <p>${personaje.nombre}</p>
+                    <img src=${personaje.foto} alt=${personaje.id}>
+                </label>
+        `
+
+        contenedorTarjetasGrupo2.innerHTML += opcionPersonajes2
+    })
+
     botonPersonaje.addEventListener("click", seleccionarPersonajeJugador)
     botonPiedra.addEventListener("click", ataquePiedra)
     botonTijera.addEventListener("click", ataqueTijera)
@@ -104,6 +136,7 @@ window.addEventListener("load", () => {   //iniciar juego
     botonReiniciar.addEventListener("click", reiniciar)
 })
 
+//No cargan las imagenes al seleccionarlas previamente
 function seleccionarPersonajeJugador() {
     ataqueSeccion.style.display = "flex"
     personajeSeccion.style.display = "none"
