@@ -7,14 +7,7 @@ const botonPapel = document.getElementById("boton-papel")
 const botonReiniciar = document.getElementById("boton-reiniciar")
 
 const personajeSeccion = document.getElementById("eleccion-personaje")
-const adaInput = document.getElementById("ada")
-const graceInput = document.getElementById("grace")
-const hedyInput = document.getElementById("hedy")
-const margaterInput = document.getElementById("margaret")
-const maryInput = document.getElementById("mary")
-const valentinaInput = document.getElementById("valentina")
 const personajeJugadorParrafo = document.getElementById("personaje-jugador")
-
 const personajeEnemigoParrafo = document.getElementById("personaje-enemigo")
 
 const vidasJugadorSpan = document.getElementById("vidas-jugador")
@@ -28,9 +21,16 @@ const contenedorTarjetasGrupo2 = document.getElementById("contenedor-tarjetas-gr
 
 let personajesGrupo1 = []
 let personajesGrupo2 = []
+let opcionPersonajes1
+let opcionPersonajes2
+let adaInput
+let graceInput
+let hedyInput
+let margaterInput
+let maryInput
+let valentinaInput
 let ataqueJugador
 let ataqueEnemigo
-let opcionPersonajes
 let vidasJugador = 3
 let vidasEnemigo = 3
 
@@ -107,14 +107,18 @@ window.addEventListener("load", () => {   //iniciar juego
     reiniciarSeccion.style.display = "none"
 
     personajesGrupo1.forEach((personaje) => {   //   Template Literals
-        opcionDePersonajes1 = `
+        opcionPersonajes1 = `
         <input type="radio" name="personaje" id=${personaje.id} />
                 <label class="tarjeta-de-personaje" for=${personaje.id}>
                     <p>${personaje.nombre}</p>
                     <img src=${personaje.foto} alt=${personaje.id}>
                 </label>
         `
-        contenedorTarjetasGrupo1.innerHTML += opcionDePersonajes1
+        contenedorTarjetasGrupo1.innerHTML += opcionPersonajes1
+
+        adaInput = document.getElementById("ada")
+        graceInput = document.getElementById("grace")
+        hedyInput = document.getElementById("hedy")
     })
 
     personajesGrupo2.forEach((personaje) => {
@@ -127,6 +131,10 @@ window.addEventListener("load", () => {   //iniciar juego
         `
 
         contenedorTarjetasGrupo2.innerHTML += opcionPersonajes2
+
+        margaterInput = document.getElementById("margaret")
+        maryInput = document.getElementById("mary")
+        valentinaInput = document.getElementById("valentina")
     })
 
     botonPersonaje.addEventListener("click", seleccionarPersonajeJugador)
@@ -136,7 +144,6 @@ window.addEventListener("load", () => {   //iniciar juego
     botonReiniciar.addEventListener("click", reiniciar)
 })
 
-//No cargan las imagenes al seleccionarlas previamente
 function seleccionarPersonajeJugador() {
     ataqueSeccion.style.display = "flex"
     personajeSeccion.style.display = "none"
