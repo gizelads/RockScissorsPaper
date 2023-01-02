@@ -115,10 +115,6 @@ window.addEventListener("load", () => {   //iniciar juego
                 </label>
         `
         contenedorTarjetasGrupo1.innerHTML += opcionPersonajes1
-
-        adaInput = document.getElementById("ada")
-        graceInput = document.getElementById("grace")
-        hedyInput = document.getElementById("hedy")
     })
 
     personajesGrupo2.forEach((personaje) => {
@@ -131,11 +127,14 @@ window.addEventListener("load", () => {   //iniciar juego
         `
 
         contenedorTarjetasGrupo2.innerHTML += opcionPersonajes2
-
-        margaterInput = document.getElementById("margaret")
-        maryInput = document.getElementById("mary")
-        valentinaInput = document.getElementById("valentina")
     })
+
+    adaInput = document.getElementById("ada")
+    graceInput = document.getElementById("grace")
+    hedyInput = document.getElementById("hedy")
+    margaterInput = document.getElementById("margaret")
+    maryInput = document.getElementById("mary")
+    valentinaInput = document.getElementById("valentina")
 
     botonPersonaje.addEventListener("click", seleccionarPersonajeJugador)
     botonPiedra.addEventListener("click", ataquePiedra)
