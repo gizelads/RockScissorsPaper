@@ -170,7 +170,10 @@ function seleccionarPersonajeJugador() {
 }
 
 function seleccionarPersonajeEnemigo() {
-    /* personajeEnemigoParrafo.innerHTML = personajes[aleatorio(0, personajes.length - 1)].foto */
+    /* 
+    let personajeAleatorio = aleatorio(0, personajes.length - 1)
+    personajeEnemigoParrafo.innerHTML = `<img src=${personajes[personajeAleatorio].foto} alt=${personajes[personajeAleatorio].id}>`
+    */
 
     let imagenesPersonajes = [`<img src=${ada.foto} alt=${ada.id}>`, `<img src=${grace.foto} alt=${grace.id}>`, `<img src=${hedy.foto} alt=${hedy.id}>`, `<img src=${margaret.foto} alt=${margaret.id}>`, `<img src=${mary.foto} alt=${mary.id}>`, `<img src=${valentina.foto} alt=${valentina.id}>`]
     personajeEnemigoParrafo.innerHTML = imagenesPersonajes[aleatorio(0, (personajesGrupo1.length + personajesGrupo2.length) - 1)]
