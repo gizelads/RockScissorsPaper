@@ -146,18 +146,20 @@ window.addEventListener("load", () => {   //iniciar juego
 function seleccionarPersonajeJugador() {
     ataqueSeccion.style.display = "flex"
     personajeSeccion.style.display = "none"
+
     if (adaInput.checked) {
-        personajeJugadorParrafo.innerHTML = "<img src=\"./assets/ada-lovelace.png\" alt=\"ada\">"
+        /* personajeJugadorParrafo.innerHTML = adaInput.id */
+        personajeJugadorParrafo.innerHTML = `<img src=${ada.foto} alt=${ada.id}>`
     } else if (graceInput.checked) {
-        personajeJugadorParrafo.innerHTML = "<img src=\"./assets/grace-hopper.png\" alt=\"grace\">"
+        personajeJugadorParrafo.innerHTML = `<img src=${grace.foto} alt=${grace.id}>`
     } else if (hedyInput.checked) {
-        personajeJugadorParrafo.innerHTML = "<img src=\"./assets/hedy-lamarr.png\" alt=\"hedy\">"
+        personajeJugadorParrafo.innerHTML = `<img src=${hedy.foto} alt=${hedy.id}>`
     } else if (margaterInput.checked) {
-        personajeJugadorParrafo.innerHTML = "<img src=\"./assets/margaret-hamilton.png\" alt=\"margaret\">"
+        personajeJugadorParrafo.innerHTML = `<img src=${margaret.foto} alt=${margaret.id}>`
     } else if (maryInput.checked) {
-        personajeJugadorParrafo.innerHTML = "<img src=\"./assets/mary-jackson.png\" alt=\"mary\">"
+        personajeJugadorParrafo.innerHTML = `<img src=${mary.foto} alt=${mary.id}>`
     } else if (valentinaInput.checked) {
-        personajeJugadorParrafo.innerHTML = "<img src=\"./assets/valentina-tereshkova.png\" alt=\"valentina\">"
+        personajeJugadorParrafo.innerHTML = `<img src=${valentina.foto} alt=${valentina.id}>`
     } else {
         alert("Your must select a character.")
         ataqueSeccion.style.display = "none"
