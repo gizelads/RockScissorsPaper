@@ -1,9 +1,6 @@
 const ataqueSeccion = document.getElementById("eleccion-ataque")
 const reiniciarSeccion = document.getElementById("reset")
 const botonPersonaje = document.getElementById("boton-personaje")
-const botonPiedra = document.getElementById("boton-piedra")
-const botonTijera = document.getElementById("boton-tijera")
-const botonPapel = document.getElementById("boton-papel")
 const botonReiniciar = document.getElementById("boton-reiniciar")
 
 const personajeSeccion = document.getElementById("eleccion-personaje")
@@ -18,6 +15,7 @@ const mensajesAtaqueJugador = document.getElementById("ataque-del-jugador")
 const mensajesAtaqueEnemigo = document.getElementById("ataque-del-enemigo")
 const contenedorTarjetasGrupo1 = document.getElementById("contenedor-tarjetas-grupo1")
 const contenedorTarjetasGrupo2 = document.getElementById("contenedor-tarjetas-grupo2")
+const contenedorBotonesAtaque = document.getElementById("contenedor-botones-ataque")
 
 let personajes = []
 let opcionPersonajes
@@ -27,7 +25,11 @@ let hedyInput
 let margaterInput
 let maryInput
 let valentinaInput
+let botonPiedra
+let botonTijera
+let botonPapel
 let personajeJugador
+let ataquesPersonajeJugador
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
@@ -91,11 +93,11 @@ mary.ataques.push(
 )
 
 valentina.ataques.push(
+    { nombre: "📄", id: "boton-papel" },
+    { nombre: "📄", id: "boton-papel" },
+    { nombre: "📄", id: "boton-papel" },
     { nombre: "🪨", id: "boton-piedra" },
-    { nombre: "🪨", id: "boton-piedra" },
-    { nombre: "🪨", id: "boton-piedra" },
-    { nombre: "✂️", id: "boton-tijera" },
-    { nombre: "📄", id: "boton-papel" }
+    { nombre: "✂️", id: "boton-tijera" }
 )
 
 personajes.push(ada, grace, hedy, margaret, mary, valentina)
@@ -127,9 +129,6 @@ window.addEventListener("load", () => {   //iniciar juego
     valentinaInput = document.getElementById("valentina")
 
     botonPersonaje.addEventListener("click", seleccionarPersonajeJugador)
-    botonPiedra.addEventListener("click", ataquePiedra)
-    botonTijera.addEventListener("click", ataqueTijera)
-    botonPapel.addEventListener("click", ataquePapel)
     botonReiniciar.addEventListener("click", reiniciar)
 })
 
@@ -174,6 +173,23 @@ function extraerAtaquesJugador(personajeJugador) {
     }
 
     mostrarAtaques(ataquesJugador)
+}
+
+function mostrarAtaques(ataquesJugador) {
+    ataquesJugador.forEach((ataque) => {
+        ataquesPersonajeJugador = `
+        <button id=${ataque.id}>${ataque.nombre}</button>
+        `
+        contenedorBotonesAtaque.innerHTML += ataquesPersonajeJugador
+    })
+    
+    botonPiedra = document.getElementById("boton-piedra")
+    botonTijera = document.getElementById("boton-tijera")
+    botonPapel = document.getElementById("boton-papel")
+    
+    botonPiedra.addEventListener("click", ataquePiedra)
+    botonTijera.addEventListener("click", ataqueTijera)
+    botonPapel.addEventListener("click", ataquePapel)
 }
 
 function seleccionarPersonajeEnemigo() {

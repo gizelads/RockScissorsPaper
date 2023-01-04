@@ -74,10 +74,8 @@ input:checked + label {
     border: 2px solid #774360;
 }
 
-#boton-personaje, 
-#boton-piedra,
-#boton-tijera,
-#boton-papel {
+#boton-personaje {
+    margin-top: 10px;
     color: white;
     background-color: #774360;
     border: 2px outset white;
@@ -86,10 +84,17 @@ input:checked + label {
     width: 180px;
     font-family: 'Arima Madurai', cursive;
     font-size: 16px;
-}
+} 
 
-#boton-personaje {
-    margin-top: 10px;
+#boton-piedra,
+#boton-tijera,
+#boton-papel {
+    background-color: #774360;
+    border: 2px outset white;
+    border-radius: 20px;
+    height: 45px;
+    width: 100px;
+    font-size: 18px;
 }
 
 #boton-personaje:hover,
