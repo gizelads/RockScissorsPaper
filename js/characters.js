@@ -19,10 +19,8 @@ const mensajesAtaqueEnemigo = document.getElementById("ataque-del-enemigo")
 const contenedorTarjetasGrupo1 = document.getElementById("contenedor-tarjetas-grupo1")
 const contenedorTarjetasGrupo2 = document.getElementById("contenedor-tarjetas-grupo2")
 
-let personajesGrupo1 = []
-let personajesGrupo2 = []
-let opcionPersonajes1
-let opcionPersonajes2
+let personajes = []
+let opcionPersonajes
 let adaInput
 let graceInput
 let hedyInput
@@ -99,34 +97,25 @@ valentina.ataques.push(
     { nombre: "📄", id: "boton-papel" }
 )
 
-personajesGrupo1.push(ada, grace, hedy)
-personajesGrupo2.push(margaret, mary, valentina)
+personajes.push(ada, grace, hedy, margaret, mary, valentina)
 
 window.addEventListener("load", () => {   //iniciar juego
     ataqueSeccion.style.display = "none"
     reiniciarSeccion.style.display = "none"
 
-    personajesGrupo1.forEach((personaje) => {   //   Template Literals
-        opcionPersonajes1 = `
+    personajes.forEach((personaje) => {
+        opcionPersonajes = `
         <input type="radio" name="personaje" id=${personaje.id} />
                 <label class="tarjeta-de-personaje" for=${personaje.id}>
                     <p>${personaje.nombre}</p>
                     <img src=${personaje.foto} alt=${personaje.id}>
                 </label>
         `
-        contenedorTarjetasGrupo1.innerHTML += opcionPersonajes1
-    })
-
-    personajesGrupo2.forEach((personaje) => {
-        opcionPersonajes2 = `
-        <input type="radio" name="personaje" id=${personaje.id} />
-                <label class="tarjeta-de-personaje" for=${personaje.id}>
-                    <p>${personaje.nombre}</p>
-                    <img src=${personaje.foto} alt=${personaje.id}>
-                </label>
-        `
-
-        contenedorTarjetasGrupo2.innerHTML += opcionPersonajes2
+        if (personaje.id === "ada" || personaje.id === "grace" || personaje.id === "hedy") {
+            contenedorTarjetasGrupo1.innerHTML += opcionPersonajes
+        } else {
+            contenedorTarjetasGrupo2.innerHTML += opcionPersonajes
+        }
     })
 
     adaInput = document.getElementById("ada")
@@ -170,13 +159,8 @@ function seleccionarPersonajeJugador() {
 }
 
 function seleccionarPersonajeEnemigo() {
-    /* 
     let personajeAleatorio = aleatorio(0, personajes.length - 1)
     personajeEnemigoParrafo.innerHTML = `<img src=${personajes[personajeAleatorio].foto} alt=${personajes[personajeAleatorio].id}>`
-    */
-
-    let imagenesPersonajes = [`<img src=${ada.foto} alt=${ada.id}>`, `<img src=${grace.foto} alt=${grace.id}>`, `<img src=${hedy.foto} alt=${hedy.id}>`, `<img src=${margaret.foto} alt=${margaret.id}>`, `<img src=${mary.foto} alt=${mary.id}>`, `<img src=${valentina.foto} alt=${valentina.id}>`]
-    personajeEnemigoParrafo.innerHTML = imagenesPersonajes[aleatorio(0, (personajesGrupo1.length + personajesGrupo2.length) - 1)]
 }
 
 function aleatorio(min, max) {
