@@ -27,6 +27,7 @@ let hedyInput
 let margaterInput
 let maryInput
 let valentinaInput
+let personajeJugador
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
@@ -137,25 +138,42 @@ function seleccionarPersonajeJugador() {
     personajeSeccion.style.display = "none"
 
     if (adaInput.checked) {
-        /* personajeJugadorParrafo.innerHTML = adaInput.id */
         personajeJugadorParrafo.innerHTML = `<img src=${ada.foto} alt=${ada.id}>`
+        personajeJugador = adaInput.id
     } else if (graceInput.checked) {
         personajeJugadorParrafo.innerHTML = `<img src=${grace.foto} alt=${grace.id}>`
+        personajeJugador = graceInput.id
     } else if (hedyInput.checked) {
         personajeJugadorParrafo.innerHTML = `<img src=${hedy.foto} alt=${hedy.id}>`
+        personajeJugador = hedyInput.id
     } else if (margaterInput.checked) {
         personajeJugadorParrafo.innerHTML = `<img src=${margaret.foto} alt=${margaret.id}>`
+        personajeJugador = margaterInput.id
     } else if (maryInput.checked) {
         personajeJugadorParrafo.innerHTML = `<img src=${mary.foto} alt=${mary.id}>`
+        personajeJugador = maryInput.id
     } else if (valentinaInput.checked) {
         personajeJugadorParrafo.innerHTML = `<img src=${valentina.foto} alt=${valentina.id}>`
+        personajeJugador = valentinaInput.id
     } else {
         alert("Your must select a character.")
         ataqueSeccion.style.display = "none"
         personajeSeccion.style.display = "flex"
     }
 
+    extraerAtaquesJugador(personajeJugador)
     seleccionarPersonajeEnemigo()
+}
+
+function extraerAtaquesJugador(personajeJugador) {
+    let ataquesJugador
+    for (let i = 0; i < personajes.length; i++) {
+        if (personajeJugador === personajes[i].id) {
+            ataquesJugador = personajes[i].ataques
+        }
+    }
+
+    mostrarAtaques(ataquesJugador)
 }
 
 function seleccionarPersonajeEnemigo() {
