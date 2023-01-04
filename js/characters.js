@@ -28,9 +28,10 @@ let valentinaInput
 let botonPiedra
 let botonTijera
 let botonPapel
+let botonesAtaqueJugador = []
 let personajeJugador
 let ataquesPersonajeJugador
-let ataqueJugador
+let ataqueJugador = []
 let ataqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
@@ -178,7 +179,7 @@ function extraerAtaquesJugador(personajeJugador) {
 function mostrarAtaques(ataquesJugador) {
     ataquesJugador.forEach((ataque) => {
         ataquesPersonajeJugador = `
-        <button id=${ataque.id}>${ataque.nombre}</button>
+        <button id=${ataque.id} class="botones-ataque-jugador">${ataque.nombre}</button>
         `
         contenedorBotonesAtaque.innerHTML += ataquesPersonajeJugador
     })
@@ -186,38 +187,61 @@ function mostrarAtaques(ataquesJugador) {
     botonPiedra = document.getElementById("boton-piedra")
     botonTijera = document.getElementById("boton-tijera")
     botonPapel = document.getElementById("boton-papel")
-    
-    botonPiedra.addEventListener("click", ataquePiedra)
+    botonesAtaqueJugador = document.querySelectorAll(".botones-ataque-jugador")
+
+    /* botonPiedra.addEventListener("click", ataquePiedra)
     botonTijera.addEventListener("click", ataqueTijera)
-    botonPapel.addEventListener("click", ataquePapel)
+    botonPapel.addEventListener("click", ataquePapel) */
+}
+
+function secuenciaAtaque() {
+    botonesAtaqueJugador.forEach((boton) => {
+        boton.addEventListener("click", (e) => { // e = evento del click
+            if (e.target.textContent === "🪨") {
+                ataqueJugador.push("Rock")
+                console.log(ataqueJugador)
+                boton.disabled = true
+            } else if(e.target.textContent === "✂️") {
+                ataqueJugador.push("Scissors")
+                console.log(ataqueJugador)
+                boton.disabled = true
+            } else {
+                ataqueJugador.push("Paper")
+                console.log(ataqueJugador)
+                boton.disabled = true
+            }
+        })
+    })
 }
 
 function seleccionarPersonajeEnemigo() {
     let personajeAleatorio = aleatorio(0, personajes.length - 1)
     personajeEnemigoParrafo.innerHTML = `<img src=${personajes[personajeAleatorio].foto} alt=${personajes[personajeAleatorio].id}>`
+
+    secuenciaAtaque()
 }
 
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function ataquePiedra() {
-    ataqueJugador = "Rock🪨"
+/* function ataquePiedra() {
+    ataqueJugador = "Rock"
     seleccionarAtaqueEnemigo()
 }
 
 function ataqueTijera() {
-    ataqueJugador = "Scissors✂️"
+    ataqueJugador = "Scissors"
     seleccionarAtaqueEnemigo()
 }
 
 function ataquePapel() {
-    ataqueJugador = "Paper📄"
+    ataqueJugador = "Paper"
     seleccionarAtaqueEnemigo()
-}
+} */
 
 function seleccionarAtaqueEnemigo() {
-    let nombresAtaques = ["Rock🪨", "Scissors✂️", "Paper📄"]
+    let nombresAtaques = ["Rock", "Scissors", "Paper"]
     ataqueEnemigo = nombresAtaques[aleatorio(0, 2)]
 
     resultadoCombate()
@@ -226,7 +250,7 @@ function seleccionarAtaqueEnemigo() {
 function resultadoCombate() {
     if (ataqueJugador == ataqueEnemigo) {
         crearMensajesCombate("Draw🤝")
-    } else if ((ataqueJugador == "Rock🪨" && ataqueEnemigo == "Scissors✂️") || (ataqueJugador == "Scissors✂️" && ataqueEnemigo == "Paper📄") || (ataqueJugador == "Paper📄" && ataqueEnemigo == "Rock🪨")) {
+    } else if ((ataqueJugador == "Rock" && ataqueEnemigo == "Scissors") || (ataqueJugador == "Scissors✂️" && ataqueEnemigo == "Paper") || (ataqueJugador == "Paper" && ataqueEnemigo == "Rock")) {
         crearMensajesCombate("You Win🎉")
         vidasEnemigo--
         vidasEnemigoSpan.innerHTML = vidasEnemigo
