@@ -31,8 +31,9 @@ let botonPapel
 let botonesAtaqueJugador = []
 let personajeJugador
 let ataquesPersonajeJugador
+let ataquesPersonajeEnemigo
 let ataqueJugador = []
-let ataqueEnemigo
+let ataqueEnemigo = []
 let vidasJugador = 3
 let vidasEnemigo = 3
 
@@ -188,28 +189,28 @@ function mostrarAtaques(ataquesJugador) {
     botonTijera = document.getElementById("boton-tijera")
     botonPapel = document.getElementById("boton-papel")
     botonesAtaqueJugador = document.querySelectorAll(".botones-ataque-jugador")
-
-    /* botonPiedra.addEventListener("click", ataquePiedra)
-    botonTijera.addEventListener("click", ataqueTijera)
-    botonPapel.addEventListener("click", ataquePapel) */
 }
 
-function secuenciaAtaque() {
+function secuenciaAtaqueJugador() {
     botonesAtaqueJugador.forEach((boton) => {
         boton.addEventListener("click", (e) => { // e = evento del click
             if (e.target.textContent === "🪨") {
                 ataqueJugador.push("Rock")
-                console.log(ataqueJugador)
-                boton.disabled = true
+                /* console.log(ataqueJugador)
+                boton.disabled = true */
             } else if(e.target.textContent === "✂️") {
                 ataqueJugador.push("Scissors")
-                console.log(ataqueJugador)
-                boton.disabled = true
+                /* console.log(ataqueJugador)
+                boton.disabled = true */
             } else {
                 ataqueJugador.push("Paper")
-                console.log(ataqueJugador)
-                boton.disabled = true
+                /* console.log(ataqueJugador)
+                boton.disabled = true */
             }
+            console.log(ataqueJugador)
+            boton.disabled = true
+
+            secuenciaAtaqueEnemigo()
         })
     })
 }
@@ -218,33 +219,34 @@ function seleccionarPersonajeEnemigo() {
     let personajeAleatorio = aleatorio(0, personajes.length - 1)
     personajeEnemigoParrafo.innerHTML = `<img src=${personajes[personajeAleatorio].foto} alt=${personajes[personajeAleatorio].id}>`
 
-    secuenciaAtaque()
+    ataquesPersonajeEnemigo = personajes[personajeAleatorio].ataques
+    secuenciaAtaqueJugador()
 }
 
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-/* function ataquePiedra() {
-    ataqueJugador = "Rock"
-    seleccionarAtaqueEnemigo()
-}
+function secuenciaAtaqueEnemigo() {
+    let ataqueAleatorio = aleatorio(0, ataquesPersonajeEnemigo.length - 1)
 
-function ataqueTijera() {
-    ataqueJugador = "Scissors"
-    seleccionarAtaqueEnemigo()
-}
+    if (ataquesPersonajeEnemigo[ataqueAleatorio].nombre === "🪨") {
+        ataqueEnemigo.push("Rock")
+        /* console.log(ataqueEnemigo)
+        ataquesPersonajeEnemigo.splice(ataqueAleatorio, 1) */
+    } else if(ataquesPersonajeEnemigo[ataqueAleatorio].nombre === "✂️") {
+        ataqueEnemigo.push("Scissors")
+        /* console.log(ataqueEnemigo)
+        ataquesPersonajeEnemigo.splice(ataqueAleatorio, 1) */
+    } else {
+        ataqueEnemigo.push("Paper")
+        /* console.log(ataqueEnemigo)
+        ataquesPersonajeEnemigo.splice(ataqueAleatorio, 1) */
+    }
+    console.log(ataqueEnemigo)
+    ataquesPersonajeEnemigo.splice(ataqueAleatorio, 1)
 
-function ataquePapel() {
-    ataqueJugador = "Paper"
-    seleccionarAtaqueEnemigo()
-} */
-
-function seleccionarAtaqueEnemigo() {
-    let nombresAtaques = ["Rock", "Scissors", "Paper"]
-    ataqueEnemigo = nombresAtaques[aleatorio(0, 2)]
-
-    resultadoCombate()
+    /* resultadoCombate() */
 }
 
 function resultadoCombate() {
