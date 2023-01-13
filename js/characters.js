@@ -34,8 +34,12 @@ let ataquesPersonajeJugador
 let ataquesPersonajeEnemigo
 let ataqueJugador = []
 let ataqueEnemigo = []
+let indexAtaqueJugador
+let indexAtaqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
+let ganadas = 0
+let perdidas = 0
 
 class Personaje {
     constructor(id, nombre, foto, vida) {
@@ -196,20 +200,13 @@ function secuenciaAtaqueJugador() {
         boton.addEventListener("click", (e) => { // e = evento del click
             if (e.target.textContent === "🪨") {
                 ataqueJugador.push("Rock")
-                /* console.log(ataqueJugador)
-                boton.disabled = true */
             } else if(e.target.textContent === "✂️") {
                 ataqueJugador.push("Scissors")
-                /* console.log(ataqueJugador)
-                boton.disabled = true */
             } else {
                 ataqueJugador.push("Paper")
-                /* console.log(ataqueJugador)
-                boton.disabled = true */
             }
             console.log(ataqueJugador)
             boton.disabled = true
-
             secuenciaAtaqueEnemigo()
         })
     })
@@ -232,44 +229,61 @@ function secuenciaAtaqueEnemigo() {
 
     if (ataquesPersonajeEnemigo[ataqueAleatorio].nombre === "🪨") {
         ataqueEnemigo.push("Rock")
-        /* console.log(ataqueEnemigo)
-        ataquesPersonajeEnemigo.splice(ataqueAleatorio, 1) */
     } else if(ataquesPersonajeEnemigo[ataqueAleatorio].nombre === "✂️") {
         ataqueEnemigo.push("Scissors")
-        /* console.log(ataqueEnemigo)
-        ataquesPersonajeEnemigo.splice(ataqueAleatorio, 1) */
     } else {
         ataqueEnemigo.push("Paper")
-        /* console.log(ataqueEnemigo)
-        ataquesPersonajeEnemigo.splice(ataqueAleatorio, 1) */
     }
     console.log(ataqueEnemigo)
     ataquesPersonajeEnemigo.splice(ataqueAleatorio, 1)
+    iniciarCombate()
+}
 
-    /* resultadoCombate() */
+function iniciarCombate() {
+    if(ataqueJugador.length === 5 && ataqueEnemigo.length === 5) {
+        resultadoCombate()
+    }
+}
+
+function  indexAtaquesOponentes(ijugador, ienemigo) {
+    indexAtaqueJugador = ataqueJugador[ijugador]
+    indexAtaqueEnemigo = ataqueEnemigo[ienemigo]
 }
 
 function resultadoCombate() {
-    if (ataqueJugador == ataqueEnemigo) {
-        crearMensajesCombate("Draw🤝")
-    } else if ((ataqueJugador == "Rock" && ataqueEnemigo == "Scissors") || (ataqueJugador == "Scissors✂️" && ataqueEnemigo == "Paper") || (ataqueJugador == "Paper" && ataqueEnemigo == "Rock")) {
-        crearMensajesCombate("You Win🎉")
-        vidasEnemigo--
-        vidasEnemigoSpan.innerHTML = vidasEnemigo
-    } else {
-        crearMensajesCombate("You Lose😵")
-        vidasJugador--
-        vidasJugadorSpan.innerHTML = vidasJugador
+    for (let i = 0; i < ataqueJugador.length; i++) {
+        if (ataqueJugador[i] === ataqueEnemigo[i]) {
+            indexAtaquesOponentes(i, i)
+            crearMensajesCombate("Draw🤝")
+        } else if ((ataqueJugador[i] === "Rock" && ataqueEnemigo[i] == "Scissors") || (ataqueJugador[i] == "Scissors" && ataqueEnemigo[i] == "Paper") || (ataqueJugador[i] == "Paper" && ataqueEnemigo[i] == "Rock")) {
+            indexAtaquesOponentes(i, i)
+            crearMensajesCombate("You Win🎉")
+            ganadas += 1
+            vidasJugadorSpan.innerHTML = ganadas
+        } else {
+            indexAtaquesOponentes(i, i)
+            crearMensajesCombate("You Lose😵")
+            perdidas += 1
+            vidasEnemigoSpan.innerHTML = perdidas
+        }
     }
-    revisarVidas()
+    
+    revisarVictorias()
 }
 
-function revisarVidas() {
-    if (vidasJugador == 0) {
+function revisarVictorias() {
+    if (ganadas == perdidas) {
+        crearMensajeFinal("DRAW🤝!")
+    } else if (ganadas > perdidas) {
+        crearMensajeFinal("Congratulations, YOU WON 🤩!")
+    } else {
+        crearMensajeFinal("Sorry, YOU LOST 😭!")
+    }
+    /* if (vidasJugador == 0) {
         crearMensajeFinal("Sorry, YOU LOST 😭!")
     } else if (vidasEnemigo == 0) {
         crearMensajeFinal("Congratulations, YOU WON 🤩!")
-    }
+    } */
 }
 
 function crearMensajesCombate(resultadoAtaques) {
@@ -277,8 +291,8 @@ function crearMensajesCombate(resultadoAtaques) {
     let parrafoAtaqueEnemigo = document.createElement("p")
 
     mensajesResultado.innerHTML = resultadoAtaques
-    parrafoAtaqueJugador.innerHTML = ataqueJugador
-    parrafoAtaqueEnemigo.innerHTML = ataqueEnemigo
+    parrafoAtaqueJugador.innerHTML = indexAtaqueJugador
+    parrafoAtaqueEnemigo.innerHTML = indexAtaqueEnemigo
 
     mensajesAtaqueJugador.appendChild(parrafoAtaqueJugador)
     mensajesAtaqueEnemigo.appendChild(parrafoAtaqueEnemigo)
@@ -286,9 +300,9 @@ function crearMensajesCombate(resultadoAtaques) {
 
 function crearMensajeFinal(resultadoCombate) {
     mensajesResultado.innerHTML = resultadoCombate
-    botonPiedra.disabled = true
+    /* botonPiedra.disabled = true
     botonPapel.disabled = true
-    botonTijera.disabled = true
+    botonTijera.disabled = true */
     reiniciarSeccion.style.display = "block"
 }
 
