@@ -205,6 +205,7 @@ function secuenciaAtaqueJugador() {
             }
             console.log(ataqueJugador)
             boton.disabled = true
+            boton.style.cursor = 'not-allowed'
             secuenciaAtaqueEnemigo()
         })
     })
