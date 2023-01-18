@@ -7,8 +7,8 @@ const personajeSeccion = document.getElementById("eleccion-personaje")
 const personajeJugadorParrafo = document.getElementById("personaje-jugador")
 const personajeEnemigoParrafo = document.getElementById("personaje-enemigo")
 
-const vidasJugadorSpan = document.getElementById("vidas-jugador")
-const vidasEnemigoSpan = document.getElementById("vidas-enemigo")
+const victoriasJugadorSpan = document.getElementById("victorias-jugador")
+const victoriasEnemigoSpan = document.getElementById("victorias-enemigo")
 
 const mensajesResultado = document.getElementById("resultado")
 const mensajesAtaqueJugador = document.getElementById("ataque-del-jugador")
@@ -38,8 +38,8 @@ let indexAtaqueJugador
 let indexAtaqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
-let ganadas = 0
-let perdidas = 0
+let victoriasJugador = 0
+let victoriasEnemigo = 0
 
 class Personaje {
     constructor(id, nombre, foto, vida) {
@@ -252,19 +252,17 @@ function  indexAtaquesOponentes(ijugador, ienemigo) {
 
 function resultadoCombate() {
     for (let i = 0; i < ataqueJugador.length; i++) {
+        indexAtaquesOponentes(i, i)
         if (ataqueJugador[i] === ataqueEnemigo[i]) {
-            indexAtaquesOponentes(i, i)
             crearMensajesCombate("Draw🤝")
         } else if ((ataqueJugador[i] === "Rock" && ataqueEnemigo[i] == "Scissors") || (ataqueJugador[i] == "Scissors" && ataqueEnemigo[i] == "Paper") || (ataqueJugador[i] == "Paper" && ataqueEnemigo[i] == "Rock")) {
-            indexAtaquesOponentes(i, i)
             crearMensajesCombate("You Win🎉")
-            ganadas += 1
-            vidasJugadorSpan.innerHTML = ganadas
+            victoriasJugador++
+            victoriasJugadorSpan.innerHTML = victoriasJugador
         } else {
-            indexAtaquesOponentes(i, i)
             crearMensajesCombate("You Lose😵")
-            perdidas += 1
-            vidasEnemigoSpan.innerHTML = perdidas
+            victoriasEnemigo++
+            victoriasEnemigoSpan.innerHTML = victoriasEnemigo
         }
     }
     
@@ -272,18 +270,13 @@ function resultadoCombate() {
 }
 
 function revisarVictorias() {
-    if (ganadas == perdidas) {
+    if (victoriasJugador === victoriasEnemigo) {
         crearMensajeFinal("DRAW🤝!")
-    } else if (ganadas > perdidas) {
+    } else if (victoriasJugador > victoriasEnemigo) {
         crearMensajeFinal("Congratulations, YOU WON 🤩!")
     } else {
         crearMensajeFinal("Sorry, YOU LOST 😭!")
     }
-    /* if (vidasJugador == 0) {
-        crearMensajeFinal("Sorry, YOU LOST 😭!")
-    } else if (vidasEnemigo == 0) {
-        crearMensajeFinal("Congratulations, YOU WON 🤩!")
-    } */
 }
 
 function crearMensajesCombate(resultadoAtaques) {
