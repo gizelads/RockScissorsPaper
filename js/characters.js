@@ -34,8 +34,6 @@ let ataquesPersonajeJugador
 let ataquesPersonajeEnemigo
 let ataqueJugador = []
 let ataqueEnemigo = []
-let indexAtaqueJugador
-let indexAtaqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
 let victoriasJugador = 0
@@ -245,22 +243,16 @@ function iniciarCombate() {
     }
 }
 
-function  indexAtaquesOponentes(ijugador, ienemigo) {
-    indexAtaqueJugador = ataqueJugador[ijugador]
-    indexAtaqueEnemigo = ataqueEnemigo[ienemigo]
-}
-
 function resultadoCombate() {
     for (let i = 0; i < ataqueJugador.length; i++) {
-        indexAtaquesOponentes(i, i)
         if (ataqueJugador[i] === ataqueEnemigo[i]) {
-            crearMensajesCombate("Draw🤝")
+            crearMensajesCombate("Draw🤝", ataqueJugador[i] + "➖", ataqueEnemigo[i] + "➖")
         } else if ((ataqueJugador[i] === "Rock" && ataqueEnemigo[i] == "Scissors") || (ataqueJugador[i] == "Scissors" && ataqueEnemigo[i] == "Paper") || (ataqueJugador[i] == "Paper" && ataqueEnemigo[i] == "Rock")) {
-            crearMensajesCombate("You Win🎉")
+            crearMensajesCombate("You Win🎉", ataqueJugador[i] + "✅", ataqueEnemigo[i] + "❌")
             victoriasJugador++
             victoriasJugadorSpan.innerHTML = victoriasJugador
         } else {
-            crearMensajesCombate("You Lose😵")
+            crearMensajesCombate("You Lose😵", ataqueJugador[i] + "❌", ataqueEnemigo[i] + "✅")
             victoriasEnemigo++
             victoriasEnemigoSpan.innerHTML = victoriasEnemigo
         }
@@ -279,13 +271,13 @@ function revisarVictorias() {
     }
 }
 
-function crearMensajesCombate(resultadoAtaques) {
+function crearMensajesCombate(resultadoAtaques, ataqueJugadorEmoji, ataqueEnemigoEmoji) {
     let parrafoAtaqueJugador = document.createElement("p")
     let parrafoAtaqueEnemigo = document.createElement("p")
 
     mensajesResultado.innerHTML = resultadoAtaques
-    parrafoAtaqueJugador.innerHTML = indexAtaqueJugador
-    parrafoAtaqueEnemigo.innerHTML = indexAtaqueEnemigo
+    parrafoAtaqueJugador.innerHTML = ataqueJugadorEmoji
+    parrafoAtaqueEnemigo.innerHTML = ataqueEnemigoEmoji
 
     mensajesAtaqueJugador.appendChild(parrafoAtaqueJugador)
     mensajesAtaqueEnemigo.appendChild(parrafoAtaqueEnemigo)
@@ -293,9 +285,6 @@ function crearMensajesCombate(resultadoAtaques) {
 
 function crearMensajeFinal(resultadoCombate) {
     mensajesResultado.innerHTML = resultadoCombate
-    /* botonPiedra.disabled = true
-    botonPapel.disabled = true
-    botonTijera.disabled = true */
     reiniciarSeccion.style.display = "block"
 }
 
