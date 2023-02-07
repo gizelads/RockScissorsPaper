@@ -42,6 +42,7 @@ let vidasEnemigo = 3
 let victoriasJugador = 0
 let victoriasEnemigo = 0
 let lienzo = mapa.getContext("2d")
+let intervalo
 
 class Personaje {
     constructor(id, nombre, foto, vida) {
@@ -56,6 +57,8 @@ class Personaje {
         this.altoFoto = 80
         this.mapaFoto = new Image()
         this.mapaFoto.src = foto
+        this.velocidadX = 0
+        this.velocidadY = 0
     }
 }
 
@@ -151,6 +154,8 @@ function seleccionarPersonajeJugador() {
     //ataqueSeccion.style.display = "flex"
     personajeSeccion.style.display = "none"
     mapaSeccion.style.display = "flex"
+
+    intervalo = setInterval(pintarPersonajeJugador, 50)
 
     if (adaInput.checked) {
         personajeJugadorParrafo.innerHTML = `<img src=${ada.foto} alt=${ada.id}>`
@@ -306,28 +311,32 @@ function reiniciar() {
 }
 
 function pintarPersonajeJugador() {
+    ada.x = ada.x + ada.velocidadX
+    ada.y = ada.y + ada.velocidadY
+
     lienzo.clearRect(0, 0, mapa.width, mapa.height)
     lienzo.drawImage(ada.mapaFoto, ada.x, ada.y, ada.anchoFoto, ada.altoFoto)
 }
 
-function moverAdaDerecha() {
-    ada.x = ada.x + 5
-    pintarPersonajeJugador()
+function moverPersonajeDerecha() {
+    ada.velocidadX = 5
 }
 
-function moverAdaIzquierda() {
-    ada.x = ada.x - 5
-    pintarPersonajeJugador()
+function moverPersonajeIzquierda() {
+    ada.velocidadX = - 5
 }
 
-function moverAdaAbajo() {
-    ada.y = ada.y + 5
-    pintarPersonajeJugador()
+function moverPersonajeAbajo() {
+    ada.velocidadY = 5
 }
 
-function moverAdaArriba() {
-    ada.y = ada.y - 5
-    pintarPersonajeJugador()
+function moverPersonajeArriba() {
+    ada.velocidadY = - 5
+}
+
+function detenerPersonaje() {
+    ada.velocidadX = 0
+    ada.velocidadY = 0
 }
 
 
