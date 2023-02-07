@@ -97,10 +97,22 @@ input:checked + label {
     font-size: 18px;
 }
 
+.botones-movimiento {
+    margin-top: 5px;
+    color: white;
+    background-color: #774360;
+    border: 2px outset white;
+    border-radius: 15px;
+    height: 35px;
+    width: 35px;
+    font-size: 16px;
+}
+
 #boton-personaje:hover,
 #boton-piedra:hover,
 #boton-tijera:hover,
-#boton-papel:hover {
+#boton-papel:hover,
+.botones-movimiento:hover {
     background-color: #4C3A51;
 }
 
@@ -111,7 +123,7 @@ input:checked + label {
 }
 
 #mapa {
-    border: 2px solid #774360;
+    border: 2px solid white;
     border-radius: 10px;
 }
 

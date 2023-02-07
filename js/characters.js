@@ -33,6 +33,7 @@ let botonTijera
 let botonPapel
 let botonesAtaqueJugador = []
 let personajeJugador
+let personajeJugadorObjeto
 let ataquesPersonajeJugador
 let ataquesPersonajeEnemigo
 let ataqueJugador = []
@@ -44,6 +45,10 @@ let victoriasEnemigo = 0
 let lienzo = mapa.getContext("2d")
 let intervalo
 
+let mapaBackground = new Image()
+// mapaBackground.src = "./assets/map1.jpg"
+mapaBackground.src = "./assets/map2.jpg"
+
 class Personaje {
     constructor(id, nombre, foto, vida) {
         this.id = id
@@ -51,8 +56,8 @@ class Personaje {
         this.foto = foto
         this.vida = vida
         this.ataques = []
-        this.x = 20
-        this.y = 30
+        this.x = 25
+        this.y = 145
         this.anchoFoto = 80
         this.altoFoto = 80
         this.mapaFoto = new Image()
@@ -153,9 +158,6 @@ window.addEventListener("load", () => {   //iniciar juego
 function seleccionarPersonajeJugador() {
     //ataqueSeccion.style.display = "flex"
     personajeSeccion.style.display = "none"
-    mapaSeccion.style.display = "flex"
-
-    iniciarMapa()
 
     if (adaInput.checked) {
         personajeJugadorParrafo.innerHTML = `<img src=${ada.foto} alt=${ada.id}>`
@@ -183,6 +185,9 @@ function seleccionarPersonajeJugador() {
 
     extraerAtaquesJugador(personajeJugador)
     seleccionarPersonajeEnemigo()
+
+    mapaSeccion.style.display = "flex"
+    iniciarMapa()
 }
 
 function extraerAtaquesJugador(personajeJugador) {
@@ -311,39 +316,47 @@ function reiniciar() {
 }
 
 function iniciarMapa() {
-    intervalo = setInterval(pintarPersonajeJugador, 50)
+    /* mapa.width = 733
+    mapa.height = 312 */
+    mapa.width = 574
+    mapa.height = 376
+
+    personajeJugadorObjeto = extraerObjetoJugador()
+
+    intervalo = setInterval(pintarLienzo, 50)
 
     window.addEventListener("keydown", moverPersonaje)
     window.addEventListener("keyup", detenerPersonaje)
 }
 
-function pintarPersonajeJugador() {
-    ada.x = ada.x + ada.velocidadX
-    ada.y = ada.y + ada.velocidadY
+function pintarLienzo() {
+    personajeJugadorObjeto.x = personajeJugadorObjeto.x + personajeJugadorObjeto.velocidadX
+    personajeJugadorObjeto.y = personajeJugadorObjeto.y + personajeJugadorObjeto.velocidadY
 
     lienzo.clearRect(0, 0, mapa.width, mapa.height)
-    lienzo.drawImage(ada.mapaFoto, ada.x, ada.y, ada.anchoFoto, ada.altoFoto)
+    lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height)
+    lienzo.drawImage(personajeJugadorObjeto.mapaFoto, personajeJugadorObjeto.x, personajeJugadorObjeto.y, personajeJugadorObjeto.anchoFoto, personajeJugadorObjeto.altoFoto)
 }
 
 function moverPersonajeDerecha() {
-    ada.velocidadX = 5
+    personajeJugadorObjeto.velocidadX = 5
 }
 
 function moverPersonajeIzquierda() {
-    ada.velocidadX = - 5
+    personajeJugadorObjeto.velocidadX = - 5
 }
 
 function moverPersonajeAbajo() {
-    ada.velocidadY = 5
+    personajeJugadorObjeto.velocidadY = 5
 }
 
 function moverPersonajeArriba() {
-    ada.velocidadY = - 5
+    personajeJugadorObjeto.velocidadY = - 5
 }
 
 function detenerPersonaje() {
-    ada.velocidadX = 0
-    ada.velocidadY = 0
+    personajeJugadorObjeto.velocidadX = 0
+    personajeJugadorObjeto.velocidadY = 0
 }
 
 function moverPersonaje(evento) {
@@ -363,6 +376,14 @@ function moverPersonaje(evento) {
     
         default:
             console.log("Otra tecla")
+    }
+}
+
+function extraerObjetoJugador() {
+    for (let i = 0; i < personajes.length; i++) {
+        if (personajeJugador === personajes[i].id) {
+            return personajes[i]
+        }
     }
 }
 
