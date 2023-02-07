@@ -310,7 +310,24 @@ function pintarPersonajeJugador() {
     lienzo.drawImage(ada.mapaFoto, ada.x, ada.y, ada.anchoFoto, ada.altoFoto)
 }
 
-function moverAda() {
+function moverAdaDerecha() {
     ada.x = ada.x + 5
     pintarPersonajeJugador()
 }
+
+function moverAdaIzquierda() {
+    ada.x = ada.x - 5
+    pintarPersonajeJugador()
+}
+
+function moverAdaAbajo() {
+    ada.y = ada.y + 5
+    pintarPersonajeJugador()
+}
+
+function moverAdaArriba() {
+    ada.y = ada.y - 5
+    pintarPersonajeJugador()
+}
+
+
