@@ -50,6 +50,12 @@ class Personaje {
         this.foto = foto
         this.vida = vida
         this.ataques = []
+        this.x = 20
+        this.y = 30
+        this.anchoFoto = 80
+        this.altoFoto = 80
+        this.mapaFoto = new Image()
+        this.mapaFoto.src = foto
     }
 }
 
@@ -145,10 +151,6 @@ function seleccionarPersonajeJugador() {
     //ataqueSeccion.style.display = "flex"
     personajeSeccion.style.display = "none"
     mapaSeccion.style.display = "flex"
-
-    let imagenDeAda = new Image()
-    imagenDeAda.src = ada.foto
-    lienzo.drawImage(imagenDeAda, 20, 40, 100, 100)
 
     if (adaInput.checked) {
         personajeJugadorParrafo.innerHTML = `<img src=${ada.foto} alt=${ada.id}>`
@@ -301,4 +303,14 @@ function crearMensajeFinal(resultadoCombate) {
 
 function reiniciar() {
     location.reload()
+}
+
+function pintarPersonajeJugador() {
+    lienzo.clearRect(0, 0, mapa.width, mapa.height)
+    lienzo.drawImage(ada.mapaFoto, ada.x, ada.y, ada.anchoFoto, ada.altoFoto)
+}
+
+function moverAda() {
+    ada.x = ada.x + 5
+    pintarPersonajeJugador()
 }
