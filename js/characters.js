@@ -17,6 +17,9 @@ const contenedorTarjetasGrupo1 = document.getElementById("contenedor-tarjetas-gr
 const contenedorTarjetasGrupo2 = document.getElementById("contenedor-tarjetas-grupo2")
 const contenedorBotonesAtaque = document.getElementById("contenedor-botones-ataque")
 
+const mapaSeccion = document.getElementById("ver-mapa")
+const mapa = document.getElementById("mapa")
+
 let personajes = []
 let opcionPersonajes
 let adaInput
@@ -38,6 +41,7 @@ let vidasJugador = 3
 let vidasEnemigo = 3
 let victoriasJugador = 0
 let victoriasEnemigo = 0
+let lienzo = mapa.getContext("2d")
 
 class Personaje {
     constructor(id, nombre, foto, vida) {
@@ -109,6 +113,7 @@ personajes.push(ada, grace, hedy, margaret, mary, valentina)
 window.addEventListener("load", () => {   //iniciar juego
     ataqueSeccion.style.display = "none"
     reiniciarSeccion.style.display = "none"
+    mapaSeccion.style.display = "none"
 
     personajes.forEach((personaje) => {
         opcionPersonajes = `
@@ -137,8 +142,13 @@ window.addEventListener("load", () => {   //iniciar juego
 })
 
 function seleccionarPersonajeJugador() {
-    ataqueSeccion.style.display = "flex"
+    //ataqueSeccion.style.display = "flex"
     personajeSeccion.style.display = "none"
+    mapaSeccion.style.display = "flex"
+
+    let imagenDeAda = new Image()
+    imagenDeAda.src = ada.foto
+    lienzo.drawImage(imagenDeAda, 20, 40, 100, 100)
 
     if (adaInput.checked) {
         personajeJugadorParrafo.innerHTML = `<img src=${ada.foto} alt=${ada.id}>`
