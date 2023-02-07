@@ -155,7 +155,7 @@ function seleccionarPersonajeJugador() {
     personajeSeccion.style.display = "none"
     mapaSeccion.style.display = "flex"
 
-    intervalo = setInterval(pintarPersonajeJugador, 50)
+    iniciarMapa()
 
     if (adaInput.checked) {
         personajeJugadorParrafo.innerHTML = `<img src=${ada.foto} alt=${ada.id}>`
@@ -310,6 +310,13 @@ function reiniciar() {
     location.reload()
 }
 
+function iniciarMapa() {
+    intervalo = setInterval(pintarPersonajeJugador, 50)
+
+    window.addEventListener("keydown", moverPersonaje)
+    window.addEventListener("keyup", detenerPersonaje)
+}
+
 function pintarPersonajeJugador() {
     ada.x = ada.x + ada.velocidadX
     ada.y = ada.y + ada.velocidadY
@@ -337,6 +344,26 @@ function moverPersonajeArriba() {
 function detenerPersonaje() {
     ada.velocidadX = 0
     ada.velocidadY = 0
+}
+
+function moverPersonaje(evento) {
+    switch (evento.key) {
+        case "ArrowRight":
+            moverPersonajeDerecha()
+            break
+        case "ArrowLeft":
+            moverPersonajeIzquierda()
+            break
+        case "ArrowDown":
+            moverPersonajeAbajo()
+            break
+        case "ArrowUp":
+            moverPersonajeArriba()
+            break
+    
+        default:
+            console.log("Otra tecla")
+    }
 }
 
 
