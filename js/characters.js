@@ -21,6 +21,7 @@ const mapaSeccion = document.getElementById("ver-mapa")
 const mapa = document.getElementById("mapa")
 
 let personajes = []
+let personajesEnemigo = []
 let opcionPersonajes
 let adaInput
 let graceInput
@@ -49,7 +50,7 @@ let mapaBackground = new Image()
 mapaBackground.src = "./assets/map.jpg"
 
 class Personaje {
-    constructor(id, nombre, foto, vida, fotoMapa, anchoFoto, x = 25, y = 160) {
+    constructor(id, nombre, foto, vida, fotoMapa, anchoFoto, x = 25, y = 170) {
         this.id = id
         this.nombre = nombre
         this.foto = foto
@@ -77,12 +78,12 @@ let margaret = new Personaje("margaret", "Margaret Hamilton🔢", "./assets/marg
 let mary = new Personaje("mary", "Mary Jackson🛰️", "./assets/mary-jackson.png", 5, "./assets/mary-map.png", 60)
 let valentina = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5, "./assets/valentina-map.png", 60)
 
-let adaEnemigo = new Personaje("ada", "Ada Lovelace💜", "./assets/ada-lovelace.png", 5, "./assets/ada-map.png", 70, 480, 240)
-let graceEnemigo = new Personaje("grace", "Grace Hopper🎖️", "./assets/grace-hopper.png", 5, "./assets/grace-map.png", 60, 260, 240)
-let hedyEnemigo = new Personaje("hedy", "Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5, "./assets/hedy-map.png", 60, 170, 165)
-let margaretEnemigo = new Personaje("margaret", "Margaret Hamilton🔢", "./assets/margaret-hamilton.png", 5, "./assets/margaret-map.png", 60, 275, 120)
-let maryEnemigo = new Personaje("mary", "Mary Jackson🛰️", "./assets/mary-jackson.png", 5, "./assets/mary-map.png", 60, 405, 40)
-let valentinaEnemigo = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5, "./assets/valentina-map.png", 60, 240, 40)
+let adaEnemigo = new Personaje("ada", "Ada Lovelace💜", "./assets/ada-lovelace.png", 5, "./assets/ada-map.png", 70, 420, 250)
+let graceEnemigo = new Personaje("grace", "Grace Hopper🎖️", "./assets/grace-hopper.png", 5, "./assets/grace-map.png", 60, 260, 250)
+let hedyEnemigo = new Personaje("hedy", "Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5, "./assets/hedy-map.png", 60, 170, 170)
+let margaretEnemigo = new Personaje("margaret", "Margaret Hamilton🔢", "./assets/margaret-hamilton.png", 5, "./assets/margaret-map.png", 60, 285, 130)
+let maryEnemigo = new Personaje("mary", "Mary Jackson🛰️", "./assets/mary-jackson.png", 5, "./assets/mary-map.png", 60, 410, 50)
+let valentinaEnemigo = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5, "./assets/valentina-map.png", 60, 120, 0)
 
 ada.ataques.push(
     { nombre: "🪨", id: "boton-piedra" },
@@ -133,6 +134,7 @@ valentina.ataques.push(
 )
 
 personajes.push(ada, grace, hedy, margaret, mary, valentina)
+personajesEnemigo.push(adaEnemigo, graceEnemigo, hedyEnemigo, margaretEnemigo, maryEnemigo, valentinaEnemigo)
 
 window.addEventListener("load", () => {   //iniciar juego
     ataqueSeccion.style.display = "none"
@@ -343,13 +345,14 @@ function pintarLienzo() {
 
     lienzo.clearRect(0, 0, mapa.width, mapa.height)
     lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height)
-    personajeJugadorObjeto.pintarPersonaje()
-    adaEnemigo.pintarPersonaje()
-    graceEnemigo.pintarPersonaje()
-    hedyEnemigo.pintarPersonaje()
-    margaretEnemigo.pintarPersonaje()
-    maryEnemigo.pintarPersonaje()
-    valentinaEnemigo.pintarPersonaje()
+
+    personajesEnemigo.forEach((personajeEnemigo) => {
+        if (personajeJugadorObjeto.id === personajeEnemigo.id) {
+            personajeJugadorObjeto.pintarPersonaje()
+        } else {
+            personajeEnemigo.pintarPersonaje()
+        }
+    })
 }
 
 function moverPersonajeDerecha() {
