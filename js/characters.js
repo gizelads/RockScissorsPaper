@@ -351,16 +351,11 @@ function pintarLienzo() {
             personajeJugadorObjeto.pintarPersonaje()
         } else {
             personajeEnemigo.pintarPersonaje()
-        }
-    })
-
-    if ((personajeJugadorObjeto.velocidadX !== 0) || (personajeJugadorObjeto.velocidadY !== 0)) {
-        personajesEnemigo.forEach((personajeEnemigo) => {
-            if (personajeJugadorObjeto.id !== personajeEnemigo.id) {
+            if ((personajeJugadorObjeto.velocidadX !== 0) || (personajeJugadorObjeto.velocidadY !== 0)) {
                 revisarColision(personajeEnemigo)
             }
-        })
-    }
+        }
+    })
 }
 
 function moverPersonajeDerecha() {
