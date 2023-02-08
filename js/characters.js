@@ -418,10 +418,10 @@ function revisarColision(enemigo) {
     const derechaPEnemigo = enemigo.x + (enemigo.anchoFoto - 15)
     const izquierdaPEnemigo = enemigo.x
 
-    const arribaPJugador = personajeJugadorObjeto.y
-    const abajoPJugador = personajeJugadorObjeto.y + (personajeJugadorObjeto.altoFoto - 15)
-    const derechaPJugador = personajeJugadorObjeto.x + (personajeJugadorObjeto.anchoFoto - 15)
-    const izquierdaPJugador = personajeJugadorObjeto.x
+    let arribaPJugador = personajeJugadorObjeto.y
+    let abajoPJugador = personajeJugadorObjeto.y + (personajeJugadorObjeto.altoFoto - 15)
+    let derechaPJugador = personajeJugadorObjeto.x + (personajeJugadorObjeto.anchoFoto - 15)
+    let izquierdaPJugador = personajeJugadorObjeto.x
 
     if(
         (abajoPJugador < arribaPEnemigo) ||
