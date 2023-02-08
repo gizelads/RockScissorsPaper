@@ -49,29 +49,40 @@ let mapaBackground = new Image()
 mapaBackground.src = "./assets/map.jpg"
 
 class Personaje {
-    constructor(id, nombre, foto, vida) {
+    constructor(id, nombre, foto, vida, fotoMapa, anchoFoto, x = 25, y = 160) {
         this.id = id
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
-        this.x = 25
-        this.y = 145
-        this.anchoFoto = 80
-        this.altoFoto = 80
+        this.x = x
+        this.y = y
+        this.anchoFoto = anchoFoto
+        this.altoFoto = 60
         this.mapaFoto = new Image()
-        this.mapaFoto.src = foto
+        this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
         this.velocidadY = 0
     }
+
+    pintarPersonaje(){
+        lienzo.drawImage(this.mapaFoto, this.x, this.y, this.anchoFoto, this.altoFoto)
+    }
 }
 
-let ada = new Personaje("ada", "Ada Lovelace💜", "./assets/ada-lovelace.png", 5)
-let grace = new Personaje("grace", "Grace Hopper🎖️", "./assets/grace-hopper.png", 5)
-let hedy = new Personaje("hedy", "Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5)
-let margaret = new Personaje("margaret", "Margaret Hamilton🔢", "./assets/margaret-hamilton.png", 5)
-let mary = new Personaje("mary", "Mary Jackson🛰️", "./assets/mary-jackson.png", 5)
-let valentina = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5)
+let ada = new Personaje("ada", "Ada Lovelace💜", "./assets/ada-lovelace.png", 5, "./assets/ada-map.png", 70)
+let grace = new Personaje("grace", "Grace Hopper🎖️", "./assets/grace-hopper.png", 5, "./assets/grace-map.png", 60)
+let hedy = new Personaje("hedy", "Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5, "./assets/hedy-map.png", 60)
+let margaret = new Personaje("margaret", "Margaret Hamilton🔢", "./assets/margaret-hamilton.png", 5, "./assets/margaret-map.png", 60)
+let mary = new Personaje("mary", "Mary Jackson🛰️", "./assets/mary-jackson.png", 5, "./assets/mary-map.png", 60)
+let valentina = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5, "./assets/valentina-map.png", 60)
+
+let adaEnemigo = new Personaje("ada", "Ada Lovelace💜", "./assets/ada-lovelace.png", 5, "./assets/ada-map.png", 70, 480, 240)
+let graceEnemigo = new Personaje("grace", "Grace Hopper🎖️", "./assets/grace-hopper.png", 5, "./assets/grace-map.png", 60, 260, 240)
+let hedyEnemigo = new Personaje("hedy", "Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5, "./assets/hedy-map.png", 60, 170, 165)
+let margaretEnemigo = new Personaje("margaret", "Margaret Hamilton🔢", "./assets/margaret-hamilton.png", 5, "./assets/margaret-map.png", 60, 275, 120)
+let maryEnemigo = new Personaje("mary", "Mary Jackson🛰️", "./assets/mary-jackson.png", 5, "./assets/mary-map.png", 60, 405, 40)
+let valentinaEnemigo = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5, "./assets/valentina-map.png", 60, 240, 40)
 
 ada.ataques.push(
     { nombre: "🪨", id: "boton-piedra" },
@@ -332,7 +343,13 @@ function pintarLienzo() {
 
     lienzo.clearRect(0, 0, mapa.width, mapa.height)
     lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height)
-    lienzo.drawImage(personajeJugadorObjeto.mapaFoto, personajeJugadorObjeto.x, personajeJugadorObjeto.y, personajeJugadorObjeto.anchoFoto, personajeJugadorObjeto.altoFoto)
+    personajeJugadorObjeto.pintarPersonaje()
+    adaEnemigo.pintarPersonaje()
+    graceEnemigo.pintarPersonaje()
+    hedyEnemigo.pintarPersonaje()
+    margaretEnemigo.pintarPersonaje()
+    maryEnemigo.pintarPersonaje()
+    valentinaEnemigo.pintarPersonaje()
 }
 
 function moverPersonajeDerecha() {
