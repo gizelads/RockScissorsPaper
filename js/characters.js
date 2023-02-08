@@ -353,6 +353,14 @@ function pintarLienzo() {
             personajeEnemigo.pintarPersonaje()
         }
     })
+
+    if ((personajeJugadorObjeto.velocidadX !== 0) || (personajeJugadorObjeto.velocidadY !== 0)) {
+        personajesEnemigo.forEach((personajeEnemigo) => {
+            if (personajeJugadorObjeto.id !== personajeEnemigo.id) {
+                revisarColision(personajeEnemigo)
+            }
+        })
+    }
 }
 
 function moverPersonajeDerecha() {
@@ -404,4 +412,26 @@ function extraerObjetoJugador() {
     }
 }
 
+function revisarColision(enemigo) {
+    const arribaPEnemigo = enemigo.y
+    const abajoPEnemigo = enemigo.y + (enemigo.altoFoto - 15)
+    const derechaPEnemigo = enemigo.x + (enemigo.anchoFoto - 15)
+    const izquierdaPEnemigo = enemigo.x
 
+    const arribaPJugador = personajeJugadorObjeto.y
+    const abajoPJugador = personajeJugadorObjeto.y + (personajeJugadorObjeto.altoFoto - 15)
+    const derechaPJugador = personajeJugadorObjeto.x + (personajeJugadorObjeto.anchoFoto - 15)
+    const izquierdaPJugador = personajeJugadorObjeto.x
+
+    if(
+        (abajoPJugador < arribaPEnemigo) ||
+        (arribaPJugador > abajoPEnemigo) ||
+        (derechaPJugador < izquierdaPEnemigo) ||
+        (izquierdaPJugador > derechaPEnemigo)
+    ) {
+        return
+    }
+
+    detenerPersonaje()
+    alert("Hay colision con " + enemigo.nombre)
+}
