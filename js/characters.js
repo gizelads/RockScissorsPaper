@@ -46,8 +46,7 @@ let lienzo = mapa.getContext("2d")
 let intervalo
 
 let mapaBackground = new Image()
-// mapaBackground.src = "./assets/map1.jpg"
-mapaBackground.src = "./assets/map2.jpg"
+mapaBackground.src = "./assets/map.jpg"
 
 class Personaje {
     constructor(id, nombre, foto, vida) {
@@ -316,8 +315,6 @@ function reiniciar() {
 }
 
 function iniciarMapa() {
-    /* mapa.width = 733
-    mapa.height = 312 */
     mapa.width = 574
     mapa.height = 376
 
