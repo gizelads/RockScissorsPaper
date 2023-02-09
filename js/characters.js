@@ -133,6 +133,55 @@ valentina.ataques.push(
     { nombre: "✂️", id: "boton-tijera" }
 )
 
+adaEnemigo.ataques.push(
+    { nombre: "📄", id: "boton-papel" },
+    { nombre: "📄", id: "boton-papel" },
+    { nombre: "📄", id: "boton-papel" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "✂️", id: "boton-tijera" }
+)
+
+graceEnemigo.ataques.push(
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "📄", id: "boton-papel" }
+    
+)
+
+hedyEnemigo.ataques.push(
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "📄", id: "boton-papel" }
+)
+
+margaretEnemigo.ataques.push(
+    { nombre: "📄", id: "boton-papel" },
+    { nombre: "📄", id: "boton-papel" },
+    { nombre: "📄", id: "boton-papel" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "✂️", id: "boton-tijera" }
+)
+
+maryEnemigo.ataques.push(
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "📄", id: "boton-papel" }
+)
+
+valentinaEnemigo.ataques.push(
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "✂️", id: "boton-tijera" },
+    { nombre: "🪨", id: "boton-piedra" },
+    { nombre: "📄", id: "boton-papel" }
+)
+
 personajes.push(ada, grace, hedy, margaret, mary, valentina)
 personajesEnemigo.push(adaEnemigo, graceEnemigo, hedyEnemigo, margaretEnemigo, maryEnemigo, valentinaEnemigo)
 
@@ -196,7 +245,7 @@ function seleccionarPersonajeJugador() {
     }
 
     extraerAtaquesJugador(personajeJugador)
-    seleccionarPersonajeEnemigo()
+    // seleccionarPersonajeEnemigo()
 
     mapaSeccion.style.display = "flex"
     iniciarMapa()
@@ -250,6 +299,13 @@ function seleccionarPersonajeEnemigo() {
     personajeEnemigoParrafo.innerHTML = `<img src=${personajes[personajeAleatorio].foto} alt=${personajes[personajeAleatorio].id}>`
 
     ataquesPersonajeEnemigo = personajes[personajeAleatorio].ataques
+    secuenciaAtaqueJugador()
+}
+
+function seleccionarPersonajeEnemigoMapa(enemigo) {
+    personajeEnemigoParrafo.innerHTML = `<img src=${enemigo.foto} alt=${enemigo.id}>`
+
+    ataquesPersonajeEnemigo = enemigo.ataques
     secuenciaAtaqueJugador()
 }
 
@@ -428,5 +484,10 @@ function revisarColision(enemigo) {
     }
 
     detenerPersonaje()
-    alert("Hay colision con " + enemigo.nombre)
+    clearInterval(intervalo) //para evitar que se aumenten listeners por demas en los botones de ataque del jugador
+    console.log("se detecto una colision")
+    ataqueSeccion.style.display = "flex"
+    mapaSeccion.style.display = "none"
+    seleccionarPersonajeEnemigoMapa(enemigo)
+    // alert("Hay colision con " + enemigo.nombre)
 }
