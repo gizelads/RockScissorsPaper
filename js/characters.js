@@ -341,6 +341,7 @@ function pintarLienzo() {
             personajeEnemigo.pintarPersonaje()
             if ((personajeJugadorObjeto.velocidadX !== 0) || (personajeJugadorObjeto.velocidadY !== 0)) {
                 revisarColision(personajeEnemigo)
+                detenerEnBordesDelMapa()
             }
         }
     })
@@ -414,6 +415,22 @@ function revisarColision(enemigo) {
     mapaSeccion.style.display = "none"
     seleccionarPersonajeEnemigoMapa(enemigo)
     // alert("Hay colision con " + enemigo.nombre)
+}
+
+function detenerEnBordesDelMapa() {
+    const arribaMapa = 0
+    const abajoMapa = mapa.height - personajeJugadorObjeto.altoFoto
+    const derechaMapa = mapa.width
+    const izquierdaMapa = 0
+
+    const arribaJugador = personajeJugadorObjeto.y
+    const derechaJugador = personajeJugadorObjeto.x + personajeJugadorObjeto.anchoFoto
+    const izquierdaJugador = personajeJugadorObjeto.x
+
+    if (arribaJugador < arribaMapa) {personajeJugadorObjeto.y = arribaMapa}
+    if (arribaJugador > abajoMapa) {personajeJugadorObjeto.y = abajoMapa}
+    if (derechaJugador > derechaMapa) {personajeJugadorObjeto.x = derechaMapa - personajeJugadorObjeto.anchoFoto} 
+    if (izquierdaJugador < izquierdaMapa) {personajeJugadorObjeto.x = izquierdaMapa}
 }
 
 function seleccionarPersonajeEnemigoRandom() {
