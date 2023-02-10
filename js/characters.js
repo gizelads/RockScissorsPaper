@@ -308,15 +308,39 @@ function mostrarAtaques(ataquesJugador) {
 }
 
 function iniciarMapa() {
+    personajeJugadorObjeto = extraerObjetoJugador()
     mapa.width = 600
     mapa.height = 400
-
-    personajeJugadorObjeto = extraerObjetoJugador()
+    responsiveMapaPersonajes()
 
     intervalo = setInterval(pintarLienzo, 50)
 
     window.addEventListener("keydown", moverPersonaje)
     window.addEventListener("keyup", detenerPersonaje)
+}
+
+function responsiveMapaPersonajes() {
+    if(window.innerWidth > 640) {
+        return
+    }
+    
+    let nuevoAnchoMapa = window.innerWidth - 40
+    let nuevoAltoMapa = Math.ceil(nuevoAnchoMapa * mapa.height / mapa.width)
+    let escala = mapa.width / nuevoAnchoMapa
+    mapa.width = nuevoAnchoMapa
+    mapa.height = nuevoAltoMapa
+
+    personajeJugadorObjeto.anchoFoto = Math.ceil(personajeJugadorObjeto.anchoFoto / escala)
+    personajeJugadorObjeto.altoFoto = Math.ceil(personajeJugadorObjeto.altoFoto / escala)
+    personajeJugadorObjeto.x = Math.ceil(personajeJugadorObjeto.x / escala)
+    personajeJugadorObjeto.y = Math.ceil(personajeJugadorObjeto.y / escala)
+    personajesEnemigo.forEach((personajeEnemigo) => {
+        personajeEnemigo.anchoFoto = Math.ceil(personajeEnemigo.anchoFoto / escala)
+        personajeEnemigo.altoFoto = Math.ceil(personajeEnemigo.altoFoto / escala)
+        personajeEnemigo.x = Math.ceil(personajeEnemigo.x / escala)
+        personajeEnemigo.y = Math.ceil(personajeEnemigo.y / escala)
+    })
+    // cosole.log(mapa.getBoundingClientRect())
 }
 
 function extraerObjetoJugador() {
@@ -394,10 +418,10 @@ function revisarColision(enemigo) {
     const derechaPEnemigo = enemigo.x + (enemigo.anchoFoto - 15)
     const izquierdaPEnemigo = enemigo.x
 
-    let arribaPJugador = personajeJugadorObjeto.y
-    let abajoPJugador = personajeJugadorObjeto.y + (personajeJugadorObjeto.altoFoto - 15)
-    let derechaPJugador = personajeJugadorObjeto.x + (personajeJugadorObjeto.anchoFoto - 15)
-    let izquierdaPJugador = personajeJugadorObjeto.x
+    const arribaPJugador = personajeJugadorObjeto.y
+    const abajoPJugador = personajeJugadorObjeto.y + (personajeJugadorObjeto.altoFoto - 15)
+    const derechaPJugador = personajeJugadorObjeto.x + (personajeJugadorObjeto.anchoFoto - 15)
+    const izquierdaPJugador = personajeJugadorObjeto.x
 
     if(
         (abajoPJugador < arribaPEnemigo) ||
