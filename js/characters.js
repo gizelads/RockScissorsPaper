@@ -51,7 +51,7 @@ let mapaBackground = new Image()
 mapaBackground.src = "./assets/map.jpg"
 
 class Personaje {
-    constructor(id, nombre, foto, vida, fotoMapa, anchoFoto, x = 25, y = 170) {
+    constructor(id, nombre, foto, vida, fotoMapa, anchoFoto, x = 35, y = 190) {
         this.id = id
         this.nombre = nombre
         this.foto = foto
@@ -79,9 +79,9 @@ let margaret = new Personaje("margaret", "Margaret Hamilton🔢", "./assets/marg
 let mary = new Personaje("mary", "Mary Jackson🛰️", "./assets/mary-jackson.png", 5, "./assets/mary-map.png", 60)
 let valentina = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5, "./assets/valentina-map.png", 60)
 
-let adaEnemigo = new Personaje("ada", "Ada Lovelace💜", "./assets/ada-lovelace.png", 5, "./assets/ada-map.png", 70, 420, 250)
-let graceEnemigo = new Personaje("grace", "Grace Hopper🎖️", "./assets/grace-hopper.png", 5, "./assets/grace-map.png", 60, 260, 250)
-let hedyEnemigo = new Personaje("hedy", "Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5, "./assets/hedy-map.png", 60, 170, 170)
+let adaEnemigo = new Personaje("ada", "Ada Lovelace💜", "./assets/ada-lovelace.png", 5, "./assets/ada-map.png", 70, 420, 270)
+let graceEnemigo = new Personaje("grace", "Grace Hopper🎖️", "./assets/grace-hopper.png", 5, "./assets/grace-map.png", 60, 260, 270)
+let hedyEnemigo = new Personaje("hedy", "Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5, "./assets/hedy-map.png", 60, 170, 190)
 let margaretEnemigo = new Personaje("margaret", "Margaret Hamilton🔢", "./assets/margaret-hamilton.png", 5, "./assets/margaret-map.png", 60, 285, 130)
 let maryEnemigo = new Personaje("mary", "Mary Jackson🛰️", "./assets/mary-jackson.png", 5, "./assets/mary-map.png", 60, 410, 50)
 let valentinaEnemigo = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5, "./assets/valentina-map.png", 60, 120, 0)
@@ -308,8 +308,8 @@ function mostrarAtaques(ataquesJugador) {
 }
 
 function iniciarMapa() {
-    mapa.width = 574
-    mapa.height = 376
+    mapa.width = 600
+    mapa.height = 400
 
     personajeJugadorObjeto = extraerObjetoJugador()
 
