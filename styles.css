@@ -21,6 +21,7 @@ body {
     padding: 10px;
     border-radius: 10px;
     font-family: 'Salsa', cursive;
+    box-shadow: 0px 0px 20px 5px white;
 }
 
 .subtitulo {
@@ -127,6 +128,7 @@ input:checked + label {
 #mapa {
     border: 2px solid white;
     border-radius: 10px;
+    box-shadow: 10px 10px 15px 0px #4C3A51;
 }
 
 #eleccion-ataque {
