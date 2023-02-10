@@ -74,8 +74,9 @@ input:checked + label {
     border: 2px solid #774360;
 }
 
-#boton-personaje {
-    margin-top: 10px;
+#boton-personaje-map,
+#boton-personaje-random {
+    margin-top: 5px;
     color: white;
     background-color: #774360;
     border: 2px outset white;
@@ -108,7 +109,8 @@ input:checked + label {
     font-size: 16px;
 }
 
-#boton-personaje:hover,
+#boton-personaje-map:hover,
+#boton-personaje-random:hover,
 #boton-piedra:hover,
 #boton-tijera:hover,
 #boton-papel:hover,

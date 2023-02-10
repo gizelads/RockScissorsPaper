@@ -1,6 +1,7 @@
 const ataqueSeccion = document.getElementById("eleccion-ataque")
 const reiniciarSeccion = document.getElementById("reset")
-const botonPersonaje = document.getElementById("boton-personaje")
+const botonPersonajevsRandom = document.getElementById("boton-personaje-random")
+const botonPersonajevsMap = document.getElementById("boton-personaje-map")
 const botonReiniciar = document.getElementById("boton-reiniciar")
 
 const personajeSeccion = document.getElementById("eleccion-personaje")
@@ -211,14 +212,15 @@ window.addEventListener("load", () => {   //iniciar juego
     margaterInput = document.getElementById("margaret")
     maryInput = document.getElementById("mary")
     valentinaInput = document.getElementById("valentina")
-
-    botonPersonaje.addEventListener("click", seleccionarPersonajeJugador)
+    
+    botonPersonajevsRandom.addEventListener("click", seleccionarPersonajeJugadorvsRandom)
+    botonPersonajevsMap.addEventListener("click",  seleccionarPersonajeJugadorvsMap)
     botonReiniciar.addEventListener("click", reiniciar)
 })
 
-function seleccionarPersonajeJugador() {
-    //ataqueSeccion.style.display = "flex"
+function seleccionarPersonajeJugadorvsRandom() {
     personajeSeccion.style.display = "none"
+    ataqueSeccion.style.display = "flex"
 
     if (adaInput.checked) {
         personajeJugadorParrafo.innerHTML = `<img src=${ada.foto} alt=${ada.id}>`
@@ -245,7 +247,36 @@ function seleccionarPersonajeJugador() {
     }
 
     extraerAtaquesJugador(personajeJugador)
-    // seleccionarPersonajeEnemigo()
+    seleccionarPersonajeEnemigoRandom()
+}
+
+function  seleccionarPersonajeJugadorvsMap() {
+    personajeSeccion.style.display = "none"
+
+    if (adaInput.checked) {
+        personajeJugadorParrafo.innerHTML = `<img src=${ada.foto} alt=${ada.id}>`
+        personajeJugador = adaInput.id
+    } else if (graceInput.checked) {
+        personajeJugadorParrafo.innerHTML = `<img src=${grace.foto} alt=${grace.id}>`
+        personajeJugador = graceInput.id
+    } else if (hedyInput.checked) {
+        personajeJugadorParrafo.innerHTML = `<img src=${hedy.foto} alt=${hedy.id}>`
+        personajeJugador = hedyInput.id
+    } else if (margaterInput.checked) {
+        personajeJugadorParrafo.innerHTML = `<img src=${margaret.foto} alt=${margaret.id}>`
+        personajeJugador = margaterInput.id
+    } else if (maryInput.checked) {
+        personajeJugadorParrafo.innerHTML = `<img src=${mary.foto} alt=${mary.id}>`
+        personajeJugador = maryInput.id
+    } else if (valentinaInput.checked) {
+        personajeJugadorParrafo.innerHTML = `<img src=${valentina.foto} alt=${valentina.id}>`
+        personajeJugador = valentinaInput.id
+    } else {
+        alert("Your must select a character.")
+        personajeSeccion.style.display = "flex"
+    }
+
+    extraerAtaquesJugador(personajeJugador)
 
     mapaSeccion.style.display = "flex"
     iniciarMapa()
@@ -276,6 +307,130 @@ function mostrarAtaques(ataquesJugador) {
     botonesAtaqueJugador = document.querySelectorAll(".botones-ataque-jugador")
 }
 
+function iniciarMapa() {
+    mapa.width = 574
+    mapa.height = 376
+
+    personajeJugadorObjeto = extraerObjetoJugador()
+
+    intervalo = setInterval(pintarLienzo, 50)
+
+    window.addEventListener("keydown", moverPersonaje)
+    window.addEventListener("keyup", detenerPersonaje)
+}
+
+function extraerObjetoJugador() {
+    for (let i = 0; i < personajes.length; i++) {
+        if (personajeJugador === personajes[i].id) {
+            return personajes[i]
+        }
+    }
+}
+
+function pintarLienzo() {
+    personajeJugadorObjeto.x = personajeJugadorObjeto.x + personajeJugadorObjeto.velocidadX
+    personajeJugadorObjeto.y = personajeJugadorObjeto.y + personajeJugadorObjeto.velocidadY
+
+    lienzo.clearRect(0, 0, mapa.width, mapa.height)
+    lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height)
+
+    personajesEnemigo.forEach((personajeEnemigo) => {
+        if (personajeJugadorObjeto.id === personajeEnemigo.id) {
+            personajeJugadorObjeto.pintarPersonaje()
+        } else {
+            personajeEnemigo.pintarPersonaje()
+            if ((personajeJugadorObjeto.velocidadX !== 0) || (personajeJugadorObjeto.velocidadY !== 0)) {
+                revisarColision(personajeEnemigo)
+            }
+        }
+    })
+}
+
+function moverPersonaje(evento) {
+    switch (evento.key) {
+        case "ArrowRight":
+            moverPersonajeDerecha()
+            break
+        case "ArrowLeft":
+            moverPersonajeIzquierda()
+            break
+        case "ArrowDown":
+            moverPersonajeAbajo()
+            break
+        case "ArrowUp":
+            moverPersonajeArriba()
+            break
+    
+        default:
+            console.log("Otra tecla")
+    }
+}
+
+function moverPersonajeDerecha() {
+    personajeJugadorObjeto.velocidadX = 5
+}
+
+function moverPersonajeIzquierda() {
+    personajeJugadorObjeto.velocidadX = - 5
+}
+
+function moverPersonajeAbajo() {
+    personajeJugadorObjeto.velocidadY = 5
+}
+
+function moverPersonajeArriba() {
+    personajeJugadorObjeto.velocidadY = - 5
+}
+
+function detenerPersonaje() {
+    personajeJugadorObjeto.velocidadX = 0
+    personajeJugadorObjeto.velocidadY = 0
+}
+
+function revisarColision(enemigo) {
+    const arribaPEnemigo = enemigo.y
+    const abajoPEnemigo = enemigo.y + (enemigo.altoFoto - 15)
+    const derechaPEnemigo = enemigo.x + (enemigo.anchoFoto - 15)
+    const izquierdaPEnemigo = enemigo.x
+
+    let arribaPJugador = personajeJugadorObjeto.y
+    let abajoPJugador = personajeJugadorObjeto.y + (personajeJugadorObjeto.altoFoto - 15)
+    let derechaPJugador = personajeJugadorObjeto.x + (personajeJugadorObjeto.anchoFoto - 15)
+    let izquierdaPJugador = personajeJugadorObjeto.x
+
+    if(
+        (abajoPJugador < arribaPEnemigo) ||
+        (arribaPJugador > abajoPEnemigo) ||
+        (derechaPJugador < izquierdaPEnemigo) ||
+        (izquierdaPJugador > derechaPEnemigo)
+    ) {
+        return
+    }
+
+    detenerPersonaje()
+    clearInterval(intervalo) //para evitar que se aumenten listeners por demas en los botones de ataque del jugador
+    console.log("se detecto una colision")
+    ataqueSeccion.style.display = "flex"
+    mapaSeccion.style.display = "none"
+    seleccionarPersonajeEnemigoMapa(enemigo)
+    // alert("Hay colision con " + enemigo.nombre)
+}
+
+function seleccionarPersonajeEnemigoRandom() {
+    let personajeAleatorio = aleatorio(0, personajesEnemigo.length - 1)
+    personajeEnemigoParrafo.innerHTML = `<img src=${personajesEnemigo[personajeAleatorio].foto} alt=${personajesEnemigo[personajeAleatorio].id}>`
+
+    ataquesPersonajeEnemigo = personajesEnemigo[personajeAleatorio].ataques
+    secuenciaAtaqueJugador()
+}
+
+function seleccionarPersonajeEnemigoMapa(enemigo) {
+    personajeEnemigoParrafo.innerHTML = `<img src=${enemigo.foto} alt=${enemigo.id}>`
+
+    ataquesPersonajeEnemigo = enemigo.ataques
+    secuenciaAtaqueJugador()
+}
+
 function secuenciaAtaqueJugador() {
     botonesAtaqueJugador.forEach((boton) => {
         boton.addEventListener("click", (e) => { // e = evento del click
@@ -292,25 +447,6 @@ function secuenciaAtaqueJugador() {
             secuenciaAtaqueEnemigo()
         })
     })
-}
-
-function seleccionarPersonajeEnemigo() {
-    let personajeAleatorio = aleatorio(0, personajes.length - 1)
-    personajeEnemigoParrafo.innerHTML = `<img src=${personajes[personajeAleatorio].foto} alt=${personajes[personajeAleatorio].id}>`
-
-    ataquesPersonajeEnemigo = personajes[personajeAleatorio].ataques
-    secuenciaAtaqueJugador()
-}
-
-function seleccionarPersonajeEnemigoMapa(enemigo) {
-    personajeEnemigoParrafo.innerHTML = `<img src=${enemigo.foto} alt=${enemigo.id}>`
-
-    ataquesPersonajeEnemigo = enemigo.ataques
-    secuenciaAtaqueJugador()
-}
-
-function aleatorio(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 function secuenciaAtaqueEnemigo() {
@@ -352,16 +488,6 @@ function resultadoCombate() {
     revisarVictorias()
 }
 
-function revisarVictorias() {
-    if (victoriasJugador === victoriasEnemigo) {
-        crearMensajeFinal("DRAW🤝!")
-    } else if (victoriasJugador > victoriasEnemigo) {
-        crearMensajeFinal("Congratulations, YOU WON 🤩!")
-    } else {
-        crearMensajeFinal("Sorry, YOU LOST 😭!")
-    }
-}
-
 function crearMensajesCombate(resultadoAtaques, ataqueJugadorEmoji, ataqueEnemigoEmoji) {
     let parrafoAtaqueJugador = document.createElement("p")
     let parrafoAtaqueEnemigo = document.createElement("p")
@@ -374,6 +500,16 @@ function crearMensajesCombate(resultadoAtaques, ataqueJugadorEmoji, ataqueEnemig
     mensajesAtaqueEnemigo.appendChild(parrafoAtaqueEnemigo)
 }
 
+function revisarVictorias() {
+    if (victoriasJugador === victoriasEnemigo) {
+        crearMensajeFinal("DRAW🤝!")
+    } else if (victoriasJugador > victoriasEnemigo) {
+        crearMensajeFinal("Congratulations, YOU WON 🤩!")
+    } else {
+        crearMensajeFinal("Sorry, YOU LOST 😭!")
+    }
+}
+
 function crearMensajeFinal(resultadoCombate) {
     mensajesResultado.innerHTML = resultadoCombate
     reiniciarSeccion.style.display = "block"
@@ -383,111 +519,6 @@ function reiniciar() {
     location.reload()
 }
 
-function iniciarMapa() {
-    mapa.width = 574
-    mapa.height = 376
-
-    personajeJugadorObjeto = extraerObjetoJugador()
-
-    intervalo = setInterval(pintarLienzo, 50)
-
-    window.addEventListener("keydown", moverPersonaje)
-    window.addEventListener("keyup", detenerPersonaje)
-}
-
-function pintarLienzo() {
-    personajeJugadorObjeto.x = personajeJugadorObjeto.x + personajeJugadorObjeto.velocidadX
-    personajeJugadorObjeto.y = personajeJugadorObjeto.y + personajeJugadorObjeto.velocidadY
-
-    lienzo.clearRect(0, 0, mapa.width, mapa.height)
-    lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height)
-
-    personajesEnemigo.forEach((personajeEnemigo) => {
-        if (personajeJugadorObjeto.id === personajeEnemigo.id) {
-            personajeJugadorObjeto.pintarPersonaje()
-        } else {
-            personajeEnemigo.pintarPersonaje()
-            if ((personajeJugadorObjeto.velocidadX !== 0) || (personajeJugadorObjeto.velocidadY !== 0)) {
-                revisarColision(personajeEnemigo)
-            }
-        }
-    })
-}
-
-function moverPersonajeDerecha() {
-    personajeJugadorObjeto.velocidadX = 5
-}
-
-function moverPersonajeIzquierda() {
-    personajeJugadorObjeto.velocidadX = - 5
-}
-
-function moverPersonajeAbajo() {
-    personajeJugadorObjeto.velocidadY = 5
-}
-
-function moverPersonajeArriba() {
-    personajeJugadorObjeto.velocidadY = - 5
-}
-
-function detenerPersonaje() {
-    personajeJugadorObjeto.velocidadX = 0
-    personajeJugadorObjeto.velocidadY = 0
-}
-
-function moverPersonaje(evento) {
-    switch (evento.key) {
-        case "ArrowRight":
-            moverPersonajeDerecha()
-            break
-        case "ArrowLeft":
-            moverPersonajeIzquierda()
-            break
-        case "ArrowDown":
-            moverPersonajeAbajo()
-            break
-        case "ArrowUp":
-            moverPersonajeArriba()
-            break
-    
-        default:
-            console.log("Otra tecla")
-    }
-}
-
-function extraerObjetoJugador() {
-    for (let i = 0; i < personajes.length; i++) {
-        if (personajeJugador === personajes[i].id) {
-            return personajes[i]
-        }
-    }
-}
-
-function revisarColision(enemigo) {
-    const arribaPEnemigo = enemigo.y
-    const abajoPEnemigo = enemigo.y + (enemigo.altoFoto - 15)
-    const derechaPEnemigo = enemigo.x + (enemigo.anchoFoto - 15)
-    const izquierdaPEnemigo = enemigo.x
-
-    let arribaPJugador = personajeJugadorObjeto.y
-    let abajoPJugador = personajeJugadorObjeto.y + (personajeJugadorObjeto.altoFoto - 15)
-    let derechaPJugador = personajeJugadorObjeto.x + (personajeJugadorObjeto.anchoFoto - 15)
-    let izquierdaPJugador = personajeJugadorObjeto.x
-
-    if(
-        (abajoPJugador < arribaPEnemigo) ||
-        (arribaPJugador > abajoPEnemigo) ||
-        (derechaPJugador < izquierdaPEnemigo) ||
-        (izquierdaPJugador > derechaPEnemigo)
-    ) {
-        return
-    }
-
-    detenerPersonaje()
-    clearInterval(intervalo) //para evitar que se aumenten listeners por demas en los botones de ataque del jugador
-    console.log("se detecto una colision")
-    ataqueSeccion.style.display = "flex"
-    mapaSeccion.style.display = "none"
-    seleccionarPersonajeEnemigoMapa(enemigo)
-    // alert("Hay colision con " + enemigo.nombre)
+function aleatorio(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
