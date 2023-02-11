@@ -5,6 +5,7 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Characters Game!💜</title>
     <link rel="stylesheet" href="./styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -26,14 +27,18 @@
     </section>
 
     <section id="ver-mapa">
-        <h1 class="titulo">Move your character</h1>
+        <h1 class="titulo">Rock, Scissors & Paper</h1>
+
+        <h2 class="subtitulo">Move your character (buttons or arrow keys):</h2>
 
         <canvas id="mapa"></canvas>
 
         <button class="botones-movimiento" onmouseup = detenerPersonaje() onmousedown=moverPersonajeArriba()>▲</button>
-        <button class="botones-movimiento" onmouseup = detenerPersonaje() onmousedown=moverPersonajeIzquierda()>◄</button>
-        <button class="botones-movimiento" onmouseup = detenerPersonaje() onmousedown=moverPersonajeAbajo()>▼</button>
-        <button class="botones-movimiento" onmouseup = detenerPersonaje() onmousedown=moverPersonajeDerecha()>►</button>
+        <div>
+            <button class="botones-movimiento" onmouseup = detenerPersonaje() onmousedown=moverPersonajeIzquierda()>◄</button>
+            <button class="botones-movimiento" onmouseup = detenerPersonaje() onmousedown=moverPersonajeAbajo()>▼</button>
+            <button class="botones-movimiento" onmouseup = detenerPersonaje() onmousedown=moverPersonajeDerecha()>►</button>
+        </div>
     </section>
 
     <section id="eleccion-ataque">
