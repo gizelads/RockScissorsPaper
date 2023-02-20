@@ -1,0 +1,19 @@
+{
+  "name": "rockscissorspaper",
+  "version": "1.0.0",
+  "description": "<!---  Images from:  → [@luailustrada](-https://luailustrada.tumblr.com/) para Chicas en Tecnología [@chicasentec](https://twitter.com/chicasentec).  → [Map from stockgiu](https://www.freepik.es/vector-gratis/mundo-juego-arcade-escena-pixeles_4815151.htm#page=15&query=tilemap%20game&position=32&from_view=search&track=ais) en Freepik.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gizelads/RockScissorsPaper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gizelads/RockScissorsPaper/issues"
+  },
+  "homepage": "https://github.com/gizelads/RockScissorsPaper#readme"
+}
