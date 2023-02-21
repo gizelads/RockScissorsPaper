@@ -21,6 +21,7 @@ const contenedorBotonesAtaque = document.getElementById("contenedor-botones-ataq
 const mapaSeccion = document.getElementById("ver-mapa")
 const mapa = document.getElementById("mapa")
 
+let jugadorId = null
 let personajes = []
 let personajesEnemigo = []
 let opcionPersonajes
@@ -213,8 +214,8 @@ window.addEventListener("load", () => {   //iniciar juego
     maryInput = document.getElementById("mary")
     valentinaInput = document.getElementById("valentina")
     
-    botonPersonajevsRandom.addEventListener("click", seleccionarPersonajeJugadorvsRandom)
-    botonPersonajevsMap.addEventListener("click",  seleccionarPersonajeJugadorvsMap)
+    botonPersonajevsRandom.addEventListener("click", enviarPersonajeBackJugadorvsRandom)
+    botonPersonajevsMap.addEventListener("click",  enviarPersonajeBackJugadorvsMap)
     botonReiniciar.addEventListener("click", reiniciar)
 
     unirseAlJuego()
@@ -223,17 +224,17 @@ window.addEventListener("load", () => {   //iniciar juego
 function unirseAlJuego() {
     fetch("http://localhost:8080/unirse")
         .then(function (res) {
-            // console.log(res)
             if (res.ok) {
                 res.text()
                     .then(function (respuesta) {
                         console.log(respuesta)
+                        jugadorId = respuesta
                     })
             }
         })
 }
 
-function seleccionarPersonajeJugadorvsRandom() {
+function enviarPersonajeBackJugadorvsRandom() {
     personajeSeccion.style.display = "none"
     ataqueSeccion.style.display = "flex"
 
@@ -261,11 +262,13 @@ function seleccionarPersonajeJugadorvsRandom() {
         personajeSeccion.style.display = "flex"
     }
 
+    enviarPersonajeBack(personajeJugador)
+
     extraerAtaquesJugador(personajeJugador)
-    seleccionarPersonajeEnemigoRandom()
+    enviarPersonajeBackEnemigoRandom()
 }
 
-function  seleccionarPersonajeJugadorvsMap() {
+function  enviarPersonajeBackJugadorvsMap() {
     personajeSeccion.style.display = "none"
 
     if (adaInput.checked) {
@@ -291,10 +294,24 @@ function  seleccionarPersonajeJugadorvsMap() {
         personajeSeccion.style.display = "flex"
     }
 
+    enviarPersonajeBack(personajeJugador)
+
     extraerAtaquesJugador(personajeJugador)
 
     mapaSeccion.style.display = "flex"
     iniciarMapa()
+}
+
+function enviarPersonajeBack(personajeJugador) {
+    fetch(`http://localhost:8080/personaje/${jugadorId}`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            personaje: personajeJugador
+        })
+    })
 }
 
 function extraerAtaquesJugador(personajeJugador) {
@@ -452,7 +469,7 @@ function revisarColision(enemigo) {
     console.log("se detecto una colision")
     ataqueSeccion.style.display = "flex"
     mapaSeccion.style.display = "none"
-    seleccionarPersonajeEnemigoMapa(enemigo)
+    enviarPersonajeBackEnemigoMapa(enemigo)
     // alert("Hay colision con " + enemigo.nombre)
 }
 
@@ -472,7 +489,7 @@ function detenerEnBordesDelMapa() {
     if (izquierdaJugador < izquierdaMapa) {personajeJugadorObjeto.x = izquierdaMapa}
 }
 
-function seleccionarPersonajeEnemigoRandom() {
+function enviarPersonajeBackEnemigoRandom() {
     let personajeAleatorio = aleatorio(0, personajesEnemigo.length - 1)
     personajeEnemigoParrafo.innerHTML = `<img src=${personajesEnemigo[personajeAleatorio].foto} alt=${personajesEnemigo[personajeAleatorio].id}>`
 
@@ -480,7 +497,7 @@ function seleccionarPersonajeEnemigoRandom() {
     secuenciaAtaqueJugador()
 }
 
-function seleccionarPersonajeEnemigoMapa(enemigo) {
+function enviarPersonajeBackEnemigoMapa(enemigo) {
     personajeEnemigoParrafo.innerHTML = `<img src=${enemigo.foto} alt=${enemigo.id}>`
 
     ataquesPersonajeEnemigo = enemigo.ataques
