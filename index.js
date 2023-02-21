@@ -1,5 +1,8 @@
 const express = require("express")
+const cors = require("cors")
 const app = express()
+
+app.use(cors())
 
 const jugadores = []
 
@@ -14,7 +17,6 @@ app.get("/unirse", (req, res) => {
     const jugador = new Jugador(id)
     jugadores.push(jugador)
 
-    res.setHeader("Access-Control-Allow-Origin", "*")
     res.send(id)
 })
 
