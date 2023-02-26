@@ -52,7 +52,7 @@ let mapaBackground = new Image()
 mapaBackground.src = "./assets/map.jpg"
 
 class Personaje {
-    constructor(id, nombre, foto, vida, fotoMapa, anchoFoto, x = 35, y = 190) {
+    constructor(id, nombre, foto, vida, fotoMapa, anchoFoto, x = 35, y = 190, idback = null) {
         this.id = id
         this.nombre = nombre
         this.foto = foto
@@ -66,6 +66,7 @@ class Personaje {
         this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
         this.velocidadY = 0
+        this.idback = idback
     }
 
     pintarPersonaje(){
@@ -80,62 +81,69 @@ let margaret = new Personaje("margaret", "Margaret Hamilton🔢", "./assets/marg
 let mary = new Personaje("mary", "Mary Jackson🛰️", "./assets/mary-jackson.png", 5, "./assets/mary-map.png", 60)
 let valentina = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5, "./assets/valentina-map.png", 60)
 
-let adaEnemigo = new Personaje("ada", "Ada Lovelace💜", "./assets/ada-lovelace.png", 5, "./assets/ada-map.png", 70, 420, 270)
+/* let adaEnemigo = new Personaje("ada", "Ada Lovelace💜", "./assets/ada-lovelace.png", 5, "./assets/ada-map.png", 70, 420, 270)
 let graceEnemigo = new Personaje("grace", "Grace Hopper🎖️", "./assets/grace-hopper.png", 5, "./assets/grace-map.png", 60, 260, 270)
 let hedyEnemigo = new Personaje("hedy", "Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5, "./assets/hedy-map.png", 60, 170, 190)
 let margaretEnemigo = new Personaje("margaret", "Margaret Hamilton🔢", "./assets/margaret-hamilton.png", 5, "./assets/margaret-map.png", 60, 285, 130)
 let maryEnemigo = new Personaje("mary", "Mary Jackson🛰️", "./assets/mary-jackson.png", 5, "./assets/mary-map.png", 60, 410, 50)
-let valentinaEnemigo = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5, "./assets/valentina-map.png", 60, 120, 0)
+let valentinaEnemigo = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5, "./assets/valentina-map.png", 60, 120, 0) */
 
-ada.ataques.push(
+const ADA_ATAQUES = [
     { nombre: "🪨", id: "boton-piedra" },
     { nombre: "🪨", id: "boton-piedra" },
     { nombre: "🪨", id: "boton-piedra" },
     { nombre: "✂️", id: "boton-tijera" },
     { nombre: "📄", id: "boton-papel" }
-)
+]
 
-grace.ataques.push(
+const GRACE_ATAQUES = [
     { nombre: "✂️", id: "boton-tijera" },
     { nombre: "✂️", id: "boton-tijera" },
     { nombre: "✂️", id: "boton-tijera" },
     { nombre: "🪨", id: "boton-piedra" },
     { nombre: "📄", id: "boton-papel" }
-)
+]
 
-hedy.ataques.push(
+const HEDY_ATAQUES = [
     { nombre: "📄", id: "boton-papel" },
     { nombre: "📄", id: "boton-papel" },
     { nombre: "📄", id: "boton-papel" },
     { nombre: "🪨", id: "boton-piedra" },
     { nombre: "✂️", id: "boton-tijera" }
-)
+]
 
-margaret.ataques.push(
+const MARGARET_ATAQUES = [
     { nombre: "🪨", id: "boton-piedra" },
     { nombre: "🪨", id: "boton-piedra" },
     { nombre: "🪨", id: "boton-piedra" },
     { nombre: "✂️", id: "boton-tijera" },
     { nombre: "📄", id: "boton-papel" }
-)
+]
 
-mary.ataques.push(
+const MARY_ATAQUES = [
     { nombre: "✂️", id: "boton-tijera" },
     { nombre: "✂️", id: "boton-tijera" },
     { nombre: "✂️", id: "boton-tijera" },
     { nombre: "🪨", id: "boton-piedra" },
     { nombre: "📄", id: "boton-papel" }
-)
+]
 
-valentina.ataques.push(
+const VALENTINA_ATAQUES = [
     { nombre: "📄", id: "boton-papel" },
     { nombre: "📄", id: "boton-papel" },
     { nombre: "📄", id: "boton-papel" },
     { nombre: "🪨", id: "boton-piedra" },
     { nombre: "✂️", id: "boton-tijera" }
-)
+]
 
-adaEnemigo.ataques.push(
+ada.ataques.push(...ADA_ATAQUES)
+grace.ataques.push(...GRACE_ATAQUES)
+hedy.ataques.push(...HEDY_ATAQUES)
+margaret.ataques.push(...MARGARET_ATAQUES)
+mary.ataques.push(...MARY_ATAQUES)
+valentina.ataques.push(...VALENTINA_ATAQUES)
+
+/* adaEnemigo.ataques.push(
     { nombre: "📄", id: "boton-papel" },
     { nombre: "📄", id: "boton-papel" },
     { nombre: "📄", id: "boton-papel" },
@@ -182,10 +190,10 @@ valentinaEnemigo.ataques.push(
     { nombre: "✂️", id: "boton-tijera" },
     { nombre: "🪨", id: "boton-piedra" },
     { nombre: "📄", id: "boton-papel" }
-)
+) */
 
 personajes.push(ada, grace, hedy, margaret, mary, valentina)
-personajesEnemigo.push(adaEnemigo, graceEnemigo, hedyEnemigo, margaretEnemigo, maryEnemigo, valentinaEnemigo)
+/* personajesEnemigo.push(adaEnemigo, graceEnemigo, hedyEnemigo, margaretEnemigo, maryEnemigo, valentinaEnemigo) */
 
 window.addEventListener("load", () => {   //iniciar juego
     ataqueSeccion.style.display = "none"
@@ -390,18 +398,13 @@ function pintarLienzo() {
     lienzo.clearRect(0, 0, mapa.width, mapa.height)
     lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height)
 
-    personajesEnemigo.forEach((personajeEnemigo) => {
-        if (personajeJugadorObjeto.id === personajeEnemigo.id) {
-            personajeJugadorObjeto.pintarPersonaje()
-            enviarPosicionBack(personajeJugadorObjeto.x, personajeJugadorObjeto.y)
-        } else {
-            personajeEnemigo.pintarPersonaje()
-            if ((personajeJugadorObjeto.velocidadX !== 0) || (personajeJugadorObjeto.velocidadY !== 0)) {
-                revisarColision(personajeEnemigo)
-                detenerEnBordesDelMapa()
-            }
-        }
-    })
+    personajeJugadorObjeto.pintarPersonaje()
+    enviarPosicionBack(personajeJugadorObjeto.x, personajeJugadorObjeto.y)
+    //enemigos.pintarPersonaje()
+    //if ((personajeJugadorObjeto.velocidadX !== 0) || (personajeJugadorObjeto.velocidadY !== 0)) {
+        //revisarColision(/* enemigos */)
+        //detenerEnBordesDelMapa()
+    //}
 }
 
 function enviarPosicionBack(x, y) {
@@ -411,9 +414,40 @@ function enviarPosicionBack(x, y) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            x, // x: x se abrevia porque el nombre es el mismo
+            x,
             y
         })
+    })
+    .then(function(res) {
+        if(res.ok) {
+            res.json()
+                .then(function({enemigos}) {
+                    console.log(enemigos)
+                    enemigos.forEach(function(enemigo) {
+                        let personajeEnemigo = null
+                        if (enemigo.personaje != undefined) {
+                            const personajeNombre = enemigo.personaje.nombre || ""
+                            if (personajeNombre === "ada") {
+                                personajeEnemigo = new Personaje("ada", "Ada Lovelace💜", "./assets/ada-lovelace.png", 5, "./assets/ada-map.png", 70, 420, 270)
+                            } else if (personajeNombre === "grace") {
+                                personajeEnemigo = new Personaje("grace", "Grace Hopper🎖️", "./assets/grace-hopper.png", 5, "./assets/grace-map.png", 60, 260, 270)
+                            } else if (personajeNombre === "hedy") {
+                                personajeEnemigo = new Personaje("hedy", "Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5, "./assets/hedy-map.png", 60, 170, 190)
+                            } else if (personajeNombre === "margaret") {
+                                personajeEnemigo = new Personaje("margaret", "Margaret Hamilton🔢", "./assets/margaret-hamilton.png", 5, "./assets/margaret-map.png", 60, 285, 130)
+                            } else if (personajeNombre === "mary") {
+                                personajeEnemigo = new Personaje("mary", "Mary Jackson🛰️", "./assets/mary-jackson.png", 5, "./assets/mary-map.png", 60, 410, 50)
+                            } else if (personajeNombre === "valentina") {
+                                personajeEnemigo = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5, "./assets/valentina-map.png", 60, 120, 0)
+                            }
+                            
+                            personajeEnemigo.x = enemigo.x
+                            personajeEnemigo.y = enemigo.y
+                            personajeEnemigo.pintarPersonaje()
+                        }
+                    })
+                })
+        }
     })
 }
 
