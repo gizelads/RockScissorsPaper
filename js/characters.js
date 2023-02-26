@@ -214,8 +214,8 @@ window.addEventListener("load", () => {   //iniciar juego
     maryInput = document.getElementById("mary")
     valentinaInput = document.getElementById("valentina")
     
-    botonPersonajevsRandom.addEventListener("click", enviarPersonajeBackJugadorvsRandom)
-    botonPersonajevsMap.addEventListener("click",  enviarPersonajeBackJugadorvsMap)
+    botonPersonajevsRandom.addEventListener("click", seleccionarPersonajeJugadorvsRandom)
+    botonPersonajevsMap.addEventListener("click",  seleccionarPersonajeJugadorvsMap)
     botonReiniciar.addEventListener("click", reiniciar)
 
     unirseAlJuego()
@@ -234,7 +234,7 @@ function unirseAlJuego() {
         })
 }
 
-function enviarPersonajeBackJugadorvsRandom() {
+function seleccionarPersonajeJugadorvsRandom() {
     personajeSeccion.style.display = "none"
     ataqueSeccion.style.display = "flex"
 
@@ -265,10 +265,10 @@ function enviarPersonajeBackJugadorvsRandom() {
     enviarPersonajeBack(personajeJugador)
 
     extraerAtaquesJugador(personajeJugador)
-    enviarPersonajeBackEnemigoRandom()
+    seleccionarPersonajeEnemigoRandom()
 }
 
-function  enviarPersonajeBackJugadorvsMap() {
+function  seleccionarPersonajeJugadorvsMap() {
     personajeSeccion.style.display = "none"
 
     if (adaInput.checked) {
@@ -469,7 +469,7 @@ function revisarColision(enemigo) {
     console.log("se detecto una colision")
     ataqueSeccion.style.display = "flex"
     mapaSeccion.style.display = "none"
-    enviarPersonajeBackEnemigoMapa(enemigo)
+    seleccionarPersonajeEnemigoMapa(enemigo)
     // alert("Hay colision con " + enemigo.nombre)
 }
 
@@ -489,7 +489,7 @@ function detenerEnBordesDelMapa() {
     if (izquierdaJugador < izquierdaMapa) {personajeJugadorObjeto.x = izquierdaMapa}
 }
 
-function enviarPersonajeBackEnemigoRandom() {
+function seleccionarPersonajeEnemigoRandom() {
     let personajeAleatorio = aleatorio(0, personajesEnemigo.length - 1)
     personajeEnemigoParrafo.innerHTML = `<img src=${personajesEnemigo[personajeAleatorio].foto} alt=${personajesEnemigo[personajeAleatorio].id}>`
 
@@ -497,7 +497,7 @@ function enviarPersonajeBackEnemigoRandom() {
     secuenciaAtaqueJugador()
 }
 
-function enviarPersonajeBackEnemigoMapa(enemigo) {
+function seleccionarPersonajeEnemigoMapa(enemigo) {
     personajeEnemigoParrafo.innerHTML = `<img src=${enemigo.foto} alt=${enemigo.id}>`
 
     ataquesPersonajeEnemigo = enemigo.ataques
