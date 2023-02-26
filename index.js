@@ -15,6 +15,11 @@ class Jugador {
     asignarPersonaje(personaje) {
         this.personaje = personaje
     }
+
+    actualizarPosicion(x, y) {
+        this.x = x
+        this.y = y
+    }
 }
 
 class Personaje {
@@ -44,6 +49,19 @@ app.post("/personaje/:jugadorId", (req, res) => {
     
     console.log(jugadores)
     console.log(jugadorId)
+    res.end()
+})
+
+app.post("/personaje/:jugadorId/posicion" , (req, res) => {
+    const jugadorId = req.params.jugadorId || ""
+    const x = req.body.x || 0
+    const y = req.body.y || 0
+
+    const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id)
+    if (jugadorIndex >= 0) {
+        jugadores[jugadorIndex].actualizarPosicion(x, y)
+    }
+
     res.end()
 })
 

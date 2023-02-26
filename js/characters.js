@@ -393,6 +393,7 @@ function pintarLienzo() {
     personajesEnemigo.forEach((personajeEnemigo) => {
         if (personajeJugadorObjeto.id === personajeEnemigo.id) {
             personajeJugadorObjeto.pintarPersonaje()
+            enviarPosicionBack(personajeJugadorObjeto.x, personajeJugadorObjeto.y)
         } else {
             personajeEnemigo.pintarPersonaje()
             if ((personajeJugadorObjeto.velocidadX !== 0) || (personajeJugadorObjeto.velocidadY !== 0)) {
@@ -400,6 +401,19 @@ function pintarLienzo() {
                 detenerEnBordesDelMapa()
             }
         }
+    })
+}
+
+function enviarPosicionBack(x, y) {
+    fetch(`http://localhost:8080/personaje/${jugadorId}/posicion`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            x, // x: x se abrevia porque el nombre es el mismo
+            y
+        })
     })
 }
 
