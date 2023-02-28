@@ -23,6 +23,7 @@ const mapa = document.getElementById("mapa")
 
 let jugadorId = null
 let personajes = []
+let personajesEnemigos = []
 let opcionPersonajes
 let adaInput
 let graceInput
@@ -340,6 +341,10 @@ function pintarLienzo() {
 
     personajeJugadorObjeto.pintarPersonaje()
     enviarPosicionBack(personajeJugadorObjeto.x, personajeJugadorObjeto.y)
+    
+    personajesEnemigos.forEach(function (enemigo) {
+        enemigo.pintarPersonaje()
+    })
 
     //if ((personajeJugadorObjeto.velocidadX !== 0) || (personajeJugadorObjeto.velocidadY !== 0)) {
         //revisarColision(/* enemigos */)
@@ -363,7 +368,7 @@ function enviarPosicionBack(x, y) {
             res.json()
                 .then(function({ enemigos }) {
                     console.log(enemigos)
-                    enemigos.forEach(function(enemigo) {
+                    personajesEnemigos = enemigos.map(function(enemigo) {
                         let personajeEnemigo = null
                         if (enemigo.personaje !== undefined) {
                             const personajeNombre = enemigo.personaje.nombre || ""
@@ -383,7 +388,8 @@ function enviarPosicionBack(x, y) {
 
                             personajeEnemigo.x = enemigo.x
                             personajeEnemigo.y = enemigo.y
-                            personajeEnemigo.pintarPersonaje()
+                            
+                            return personajeEnemigo
                         }
                     })
                 })
