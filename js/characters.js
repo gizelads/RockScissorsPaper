@@ -22,6 +22,7 @@ const mapaSeccion = document.getElementById("ver-mapa")
 const mapa = document.getElementById("mapa")
 
 let jugadorId = null
+let enemigoId = null
 let personajes = []
 let personajesEnemigos = []
 let opcionPersonajes
@@ -315,11 +316,12 @@ function responsiveMapaPersonajes() {
     personajeJugadorObjeto.altoFoto = Math.ceil(personajeJugadorObjeto.altoFoto / escala)
     personajeJugadorObjeto.x = Math.ceil(personajeJugadorObjeto.x / escala)
     personajeJugadorObjeto.y = Math.ceil(personajeJugadorObjeto.y / escala)
-    /* personajesEnemigo.forEach((personajeEnemigo) => {
-        personajeEnemigo.anchoFoto = Math.ceil(personajeEnemigo.anchoFoto / escala)
-        personajeEnemigo.altoFoto = Math.ceil(personajeEnemigo.altoFoto / escala)
-        personajeEnemigo.x = Math.ceil(personajeEnemigo.x / escala)
-        personajeEnemigo.y = Math.ceil(personajeEnemigo.y / escala)
+
+    /* personajesEnemigos.forEach((enemigo) => {
+        enemigo.anchoFoto = Math.ceil(enemigo.anchoFoto / escala)
+        enemigo.altoFoto = Math.ceil(enemigo.altoFoto / escala)
+        enemigo.x = Math.ceil(enemigo.x / escala)
+        enemigo.y = Math.ceil(enemigo.y / escala)
     }) */
     // cosole.log(mapa.getBoundingClientRect())
 }
@@ -345,13 +347,11 @@ function pintarLienzo() {
     personajesEnemigos.forEach(function (enemigo) {
         if (enemigo !== undefined) {
             enemigo.pintarPersonaje()
+            revisarColision(enemigo)
         }
     })
 
-    //if ((personajeJugadorObjeto.velocidadX !== 0) || (personajeJugadorObjeto.velocidadY !== 0)) {
-        //revisarColision(/* enemigos */)
-        //detenerEnBordesDelMapa()
-    //}
+    detenerEnBordesDelMapa()
 }
 
 function enviarPosicionBack(x, y) {
@@ -375,17 +375,17 @@ function enviarPosicionBack(x, y) {
                         if (enemigo.personaje !== undefined) {
                             const personajeNombre = enemigo.personaje.nombre || ""
                             if (personajeNombre === "ada") {
-                                personajeEnemigo = new Personaje("ada", "Ada Lovelace💜", "./assets/ada-lovelace.png", 5, "./assets/ada-map.png", 70)
+                                personajeEnemigo = new Personaje("ada", "Ada Lovelace💜", "./assets/ada-lovelace.png", 5, "./assets/ada-map.png", 70, enemigo.id)
                             } else if (personajeNombre === "grace") {
-                                personajeEnemigo = new Personaje("grace", "Grace Hopper🎖️", "./assets/grace-hopper.png", 5, "./assets/grace-map.png", 60)
+                                personajeEnemigo = new Personaje("grace", "Grace Hopper🎖️", "./assets/grace-hopper.png", 5, "./assets/grace-map.png", 60, enemigo.id)
                             } else if (personajeNombre === "hedy") {
-                                personajeEnemigo = new Personaje("hedy", "Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5, "./assets/hedy-map.png", 60)
+                                personajeEnemigo = new Personaje("hedy", "Hedy Lamarr📡", "./assets/hedy-lamarr.png", 5, "./assets/hedy-map.png", 60, enemigo.id)
                             } else if (personajeNombre === "margaret") {
-                                personajeEnemigo = new Personaje("margaret", "Margaret Hamilton🔢", "./assets/margaret-hamilton.png", 5, "./assets/margaret-map.png", 60)
+                                personajeEnemigo = new Personaje("margaret", "Margaret Hamilton🔢", "./assets/margaret-hamilton.png", 5, "./assets/margaret-map.png", 60, enemigo.id)
                             } else if (personajeNombre === "mary") {
-                                personajeEnemigo = new Personaje("mary", "Mary Jackson🛰️", "./assets/mary-jackson.png", 5, "./assets/mary-map.png", 60)
+                                personajeEnemigo = new Personaje("mary", "Mary Jackson🛰️", "./assets/mary-jackson.png", 5, "./assets/mary-map.png", 60, enemigo.id)
                             } else if (personajeNombre === "valentina") {
-                                personajeEnemigo = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5, "./assets/valentina-map.png", 60)
+                                personajeEnemigo = new Personaje("valentina", "Valentina Tereshkova🚀", "./assets/valentina-tereshkova.png", 5, "./assets/valentina-map.png", 60, enemigo.id)
                             }
 
                             personajeEnemigo.x = enemigo.x
@@ -463,6 +463,7 @@ function revisarColision(enemigo) {
     detenerPersonaje()
     clearInterval(intervalo) //para evitar que se aumenten listeners por demas en los botones de ataque del jugador
     console.log("se detecto una colision")
+    enemigoId = enemigo.idback
     ataqueSeccion.style.display = "flex"
     mapaSeccion.style.display = "none"
     seleccionarPersonajeEnemigoMapa(enemigo)
@@ -490,17 +491,17 @@ function seleccionarPersonajeEnemigoRandom() {
     personajeEnemigoParrafo.innerHTML = `<img src=${personajes[personajeAleatorio].foto} alt=${personajes[personajeAleatorio].id}>`
 
     ataquesPersonajeEnemigo = personajes[personajeAleatorio].ataques
-    secuenciaAtaqueJugador()
+    secuenciaAtaqueJugadorRandom()
 }
 
 function seleccionarPersonajeEnemigoMapa(enemigo) {
     personajeEnemigoParrafo.innerHTML = `<img src=${enemigo.foto} alt=${enemigo.id}>`
 
     ataquesPersonajeEnemigo = enemigo.ataques
-    secuenciaAtaqueJugador()
+    secuenciaAtaqueJugadorMapa()
 }
 
-function secuenciaAtaqueJugador() {
+function secuenciaAtaqueJugadorRandom() {
     botonesAtaqueJugador.forEach((boton) => {
         boton.addEventListener("click", (e) => { // e = evento del click
             if (e.target.textContent === "🪨") {
@@ -513,12 +514,12 @@ function secuenciaAtaqueJugador() {
             console.log(ataqueJugador)
             boton.disabled = true
             boton.style.cursor = 'not-allowed'
-            secuenciaAtaqueEnemigo()
+            secuenciaAtaqueEnemigoRandom()
         })
     })
 }
 
-function secuenciaAtaqueEnemigo() {
+function secuenciaAtaqueEnemigoRandom() {
     let ataqueAleatorio = aleatorio(0, ataquesPersonajeEnemigo.length - 1)
 
     if (ataquesPersonajeEnemigo[ataqueAleatorio].nombre === "🪨") {
@@ -531,6 +532,39 @@ function secuenciaAtaqueEnemigo() {
     console.log(ataqueEnemigo)
     ataquesPersonajeEnemigo.splice(ataqueAleatorio, 1)
     iniciarCombate()
+}
+
+function secuenciaAtaqueJugadorMapa() {
+    botonesAtaqueJugador.forEach((boton) => {
+        boton.addEventListener("click", (e) => { // e = evento del click
+            if (e.target.textContent === "🪨") {
+                ataqueJugador.push("Rock")
+            } else if(e.target.textContent === "✂️") {
+                ataqueJugador.push("Scissors")
+            } else {
+                ataqueJugador.push("Paper")
+            }
+            console.log(ataqueJugador)
+            boton.disabled = true
+            boton.style.cursor = 'not-allowed'
+            
+            if (ataqueJugador.length ===5) {
+                enviarAtaquesBack()
+            }
+        })
+    })
+}
+
+function enviarAtaquesBack() {
+    fetch(`http://localhost:8080/personaje/${jugadorId}/ataques`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            ataques: ataqueJugador
+        })
+    })
 }
 
 function iniciarCombate() {
