@@ -343,7 +343,9 @@ function pintarLienzo() {
     enviarPosicionBack(personajeJugadorObjeto.x, personajeJugadorObjeto.y)
     
     personajesEnemigos.forEach(function (enemigo) {
-        enemigo.pintarPersonaje()
+        if (enemigo !== undefined) {
+            enemigo.pintarPersonaje()
+        }
     })
 
     //if ((personajeJugadorObjeto.velocidadX !== 0) || (personajeJugadorObjeto.velocidadY !== 0)) {
