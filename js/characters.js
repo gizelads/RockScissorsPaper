@@ -565,6 +565,21 @@ function enviarAtaquesBack() {
             ataques: ataqueJugador
         })
     })
+
+    intervalo = setInterval(obtenerAtaques, 50)
+}
+
+function obtenerAtaques() {
+    fetch(`http://localhost:8080/personaje/${enemigoId}/ataques`).then(function (res) {
+            if (res.ok) {
+                res.json().then(function({ ataques}) {
+                        if (ataques.length === 5) {
+                            ataqueEnemigo = ataques
+                            resultadoCombate()
+                        }
+                    })
+            }
+        })
 }
 
 function iniciarCombate() {
@@ -574,6 +589,8 @@ function iniciarCombate() {
 }
 
 function resultadoCombate() {
+    clearInterval(intervalo)
+
     for (let i = 0; i < ataqueJugador.length; i++) {
         if (ataqueJugador[i] === ataqueEnemigo[i]) {
             crearMensajesCombate("Draw🤝", ataqueJugador[i] + "➖", ataqueEnemigo[i] + "➖")
